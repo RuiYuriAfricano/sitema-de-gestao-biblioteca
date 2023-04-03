@@ -5,6 +5,12 @@ public class Autor {
     private String nome;
     private String sobrenome;
 
+    //Construtor
+    public Autor(String nome, String sobrenome){
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+    }
+
     //Getters e Setters
     public String getNome() {
         return nome;

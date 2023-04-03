@@ -13,6 +13,12 @@ public class Revista extends Item {
     //Atributos
     private int numeroDeEdicoes;
 
+    //Construtor
+    public Revista(String titulo, String data, int numeroDeEdicoes){
+        super(titulo, data);
+        this.numeroDeEdicoes = numeroDeEdicoes;
+    }
+
     //setters e getters
     public void setNumeroDeEdicoes(int numeroDeEdicoes) {
         this.numeroDeEdicoes = numeroDeEdicoes;

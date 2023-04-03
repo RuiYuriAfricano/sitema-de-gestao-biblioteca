@@ -13,6 +13,12 @@ public class Cd extends Item{
     //Atributos
     private int tempoDeReproducao;
 
+    //Construtor
+    public Cd(String titulo, String data, int tempoDeReproducao){
+        super(titulo, data);
+        this.tempoDeReproducao = tempoDeReproducao;
+    }    
+
     //Getters Setters
     public void setTempoDeReproducao(int tempoDeReproducao) {
         this.tempoDeReproducao = tempoDeReproducao;

@@ -8,6 +8,12 @@ public abstract class Item {
     protected ArrayList<Autor> autores;
     protected String data;
 
+    //Construtor
+    public Item(String titulo, String data){
+        this.titulo = titulo;
+        this.data = data;
+        autores = new ArrayList<>();
+    }
     // Getters e Setters
     public String getTitulo() {
         return titulo;

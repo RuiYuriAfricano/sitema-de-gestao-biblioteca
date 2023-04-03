@@ -13,6 +13,12 @@ public class Livro extends Item {
     //Atributos
     private int numeroDePaginas;
 
+    //Construtor
+    public Livro(String titulo, String data, int numeroDePaginas){
+        super(titulo, data);
+        this.numeroDePaginas = numeroDePaginas;
+    }
+
     //getters e setters
     public int getNumeroDePaginas() {
         return numeroDePaginas;
