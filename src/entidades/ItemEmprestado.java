@@ -5,6 +5,7 @@ public class ItemEmprestado {
     private Item item;
     private Usuario usuario;
     private String dataEmprestimo;
+    private String dataDevolucao;
 
     //construtor
     public ItemEmprestado(Item item, Usuario usuario, String dataEmprestimo){
@@ -31,5 +32,11 @@ public class ItemEmprestado {
     }
     public String getDataEmprestimo() {
         return dataEmprestimo;
+    }
+    public void setDataDevolucao(String dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+    public String getDataDevolucao() {
+        return dataDevolucao;
     }
 }
