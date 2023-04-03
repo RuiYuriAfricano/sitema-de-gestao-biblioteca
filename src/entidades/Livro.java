@@ -9,6 +9,15 @@ package entidades;
  *
  * @author Total Energies
  */
-public class Livro {
-    
+public class Livro extends Item {
+    //Atributos
+    private int numeroDePaginas;
+
+    //getters e setters
+    public int getNumeroDePaginas() {
+        return numeroDePaginas;
+    }
+    public void setNumeroDePaginas(int numeroDePaginas) {
+        this.numeroDePaginas = numeroDePaginas;
+    }
 }

@@ -9,6 +9,15 @@ package entidades;
  *
  * @author Total Energies
  */
-public class Revista {
-    
+public class Revista extends Item {
+    //Atributos
+    private int numeroDeEdicoes;
+
+    //setters e getters
+    public void setNumeroDeEdicoes(int numeroDeEdicoes) {
+        this.numeroDeEdicoes = numeroDeEdicoes;
+    }
+    public int getNumeroDeEdicoes() {
+        return numeroDeEdicoes;
+    }
 }

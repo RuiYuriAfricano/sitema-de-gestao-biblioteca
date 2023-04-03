@@ -9,6 +9,15 @@ package entidades;
  *
  * @author Total Energies
  */
-public class Cd {
-    
+public class Cd extends Item{
+    //Atributos
+    private int tempoDeReproducao;
+
+    //Getters Setters
+    public void setTempoDeReproducao(int tempoDeReproducao) {
+        this.tempoDeReproducao = tempoDeReproducao;
+    }
+    public int getTempoDeReproducao() {
+        return tempoDeReproducao;
+    }
 }
