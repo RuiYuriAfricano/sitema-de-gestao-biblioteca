@@ -5,12 +5,16 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private TipoUsuario tipo;
+    private String username;
+    private String senha;
 
     //construtor
-    public Usuario(String nome, String sobrenome, TipoUsuario tipo){
+    public Usuario(String nome, String sobrenome, TipoUsuario tipo, String username, String senha){
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.tipo = tipo;
+        this.username = username;
+        this.senha = senha;
     }
 
     //Getters e Setters
@@ -25,5 +29,23 @@ public class Usuario {
     }
     public String getSobrenome() {
         return sobrenome;
+    }
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
+    }
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    public String getSenha() {
+        return senha;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getUsername() {
+        return username;
     }
 }
