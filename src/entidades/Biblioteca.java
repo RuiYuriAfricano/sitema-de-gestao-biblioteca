@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
-    public ArrayList<Item> itens;
-    public ArrayList<Usuario> usuarios;
+    private ArrayList<Item> itens;
+    private ArrayList<Usuario> usuarios;
 
     public Biblioteca() {
         itens = new ArrayList<>();

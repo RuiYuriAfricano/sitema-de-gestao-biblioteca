@@ -33,4 +33,9 @@ public abstract class Item {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    //Adicionar autores
+    public void adicionarAutor(Autor autor){
+        this.autores.add(autor);
+    }
 }
