@@ -11,6 +11,7 @@ public class Biblioteca {
     public Biblioteca() {
         itens = new ArrayList<>();
         usuarios = new ArrayList<>();
+        itensEmprestados = new ArrayList<>();
     }
 
     // Métodos para o bibliotecário manipular
@@ -54,6 +55,7 @@ public class Biblioteca {
     // ***** Listar Itens Emprestados
     public void listarItensEmprestado() {
         System.out.println("==============================LISTAR ITENS EMPRESTADOS==============================");
+        System.out.println(" DADOS DO ITEM\n_______________");
         for (ItemEmprestado item : this.itensEmprestados) {
             System.out.println("------------------------------------------------------------");
             // Mostrar titulo
@@ -79,6 +81,10 @@ public class Biblioteca {
                 System.out.println("Item: Cd");
                 System.out.println("Tempo de reprodução: " + cd.getTempoDeReproducao());
             }
+            System.out.println(" DADOS DO USUÁRIO\n__________________");
+            System.out.println("Nome Completo: "+item.getUsuario().getNome()+" "+item.getUsuario().getSobrenome());
+            System.out.println(" DADOS DO EMPRÉSTIMO\n______________________");
+            System.out.println("Data de empréstimo: "+item.getDataEmprestimo());
 
             System.out.println("------------------------------------------------------------\n\n");
         }
@@ -98,11 +104,39 @@ public class Biblioteca {
     }
 
     // ***** Inserir usuário
+    public void inserirUsuario(Usuario usuario){
+        this.usuarios.add(usuario);
+    }
     // ***** Listar usuários
+    public void listarUsuario(){
+        System.out.println("==============================LISTAR USUÁRIOS==============================");
+        for(Usuario user: this.usuarios){
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Nome Completo: "+user.getNome()+" "+user.getSobrenome());
+            System.out.println("Username: "+user.getUsername());
+            System.out.println("Tipo: "+user.getTipo());
+        }
+        System.out.println("------------------------------------------------------------\n\n");
+    }
     // ***** Eliminar usuário
+    public void eliminarUsuario(Usuario usuario){
+        this.usuarios.remove(usuario);
+    }
     // ***** Alterar usuário
+    public void alterarUsuario(Usuario usuario){
+        for(int i = 0; i < this.usuarios.size(); i++){
+            if(this.usuarios.get(i) == usuario)
+            {
+                this.usuarios.add(i, usuario);
+            }
+        }
+    }
 
-    // Métodos para manipular os usuários
+    // Métodos para o usuario manipular
     // ***** Listar Itens Emprestados
     // ***** Emprestar
+    public void emprestarItem(Item item, Usuario user, String dataEmprestimo){
+        ItemEmprestado itemp = new ItemEmprestado(item, user, dataEmprestimo);
+        this.itensEmprestados.add(itemp);
+    }
 }
