@@ -189,13 +189,60 @@ public class Biblioteca {
         ItemEmprestado itemp = new ItemEmprestado(item, user, dataEmprestimo, dataDevolucao);
         this.itensEmprestados.add(itemp);
     }
-    //****** Devolver item
-    public void devolverItem(Item item){
-        for(int i = 0; i < itensEmprestados.size(); i++){
-            if(this.itensEmprestados.get(i).getItem() == item){
+
+    // ****** Devolver item
+    public void devolverItem(Item item) {
+        for (int i = 0; i < itensEmprestados.size(); i++) {
+            if (this.itensEmprestados.get(i).getItem() == item) {
                 ItemEmprestado itEm = this.itensEmprestados.get(i);
                 this.itensEmprestados.remove(itEm);
             }
         }
+    }
+
+    // ****** Listar Itens Disponíveis
+    public void listarItensDisponiveis() {
+        System.out.println("==============================LISTAR ITENS DISPONÍVEIS==============================");
+        for (Item item : this.itens) {
+            if (!procurarNosEmprestados(item)) {
+                System.out.println("------------------------------------------------------------");
+                // Mostrar titulo
+                System.out.println("Título: " + item.titulo);
+                // Mostrar autores
+                System.out.println("Autores: ");
+                for (Autor autor : item.autores) {
+                    System.out.println("- " + autor.getNome() + " " + autor.getSobrenome());
+                }
+                // Mostrar data de publicação
+                System.out.println("Data de publicação: " + item.data);
+
+                if (item instanceof Livro) {
+                    Livro livro = (Livro) item;
+                    System.out.println("Item: Livro");
+                    System.out.println("Número de páginas: " + livro.getNumeroDePaginas());
+                } else if (item instanceof Revista) {
+                    Revista revista = (Revista) item;
+                    System.out.println("Item: Revista");
+                    System.out.println("Número de edições: " + revista.getNumeroDeEdicoes());
+                } else if (item instanceof Cd) {
+                    Cd cd = (Cd) item;
+                    System.out.println("Item: Cd");
+                    System.out.println("Tempo de reprodução: " + cd.getTempoDeReproducao());
+                }
+
+                System.out.println("------------------------------------------------------------\n\n");
+            }
+        }
+    }
+
+    // ***** Procurar na lista dos emprestados
+    private boolean procurarNosEmprestados(Item item) {
+        int i = 0;
+        for (i = 0; i < this.itensEmprestados.size() && this.itensEmprestados.get(i).getItem() != item; i++) {
+        }
+        if (i < this.itensEmprestados.size())
+            return true;
+
+        return false;
     }
 }
