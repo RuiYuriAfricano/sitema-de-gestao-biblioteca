@@ -185,9 +185,17 @@ public class Biblioteca {
     }
 
     // ***** Emprestar item
-    public void emprestarItem(Item item, Usuario user, String dataEmprestimo) {
-        ItemEmprestado itemp = new ItemEmprestado(item, user, dataEmprestimo);
+    public void emprestarItem(Item item, Usuario user, String dataEmprestimo, String dataDevolucao) {
+        ItemEmprestado itemp = new ItemEmprestado(item, user, dataEmprestimo, dataDevolucao);
         this.itensEmprestados.add(itemp);
     }
     //****** Devolver item
+    public void devolverItem(Item item){
+        for(int i = 0; i < itensEmprestados.size(); i++){
+            if(this.itensEmprestados.get(i).getItem() == item){
+                ItemEmprestado itEm = this.itensEmprestados.get(i);
+                this.itensEmprestados.remove(itEm);
+            }
+        }
+    }
 }

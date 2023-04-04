@@ -8,10 +8,11 @@ public class ItemEmprestado {
     private String dataDevolucao;
 
     //construtor
-    public ItemEmprestado(Item item, Usuario usuario, String dataEmprestimo){
+    public ItemEmprestado(Item item, Usuario usuario, String dataEmprestimo, String dataDevolucao){
         this.item = item;
         this.usuario = usuario;
         this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
     }
 
     //setters e getters
