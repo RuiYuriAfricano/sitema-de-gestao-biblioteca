@@ -14,6 +14,10 @@ public class Biblioteca {
         itensEmprestados = new ArrayList<>();
     }
 
+    public ArrayList<Usuario> getUsuarios() {
+        return this.usuarios;
+    }
+
     // Métodos para o bibliotecário manipular
     // ***** Inserir item
     public void inserirItem(Item item) {
