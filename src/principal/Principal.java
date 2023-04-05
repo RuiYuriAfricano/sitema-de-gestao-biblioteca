@@ -13,6 +13,7 @@ public class Principal {
         lib = new Biblioteca();
 
         addDefaultUser();
+        
 
         Scanner input = new Scanner(System.in);
         char reader = '2';
