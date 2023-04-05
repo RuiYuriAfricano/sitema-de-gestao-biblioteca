@@ -1,7 +1,13 @@
 package principal;
 
 import entidades.Usuario;
+import entidades.Autor;
 import entidades.Biblioteca;
+import entidades.Cd;
+import entidades.Item;
+import entidades.Livro;
+import entidades.Revista;
+
 import java.util.Scanner;
 import enums.EnumUsuario;
 
@@ -88,29 +94,261 @@ public class Principal {
         } while (loggedUser == null && tentativas > 0);
     }
 
-    private static void goMainMenu() {
-        System.out.println("*********** MENU PRINCIPAL **************\n\n");
+    private static void goInsertLivro() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("*********** MENU PRINCIPAL > INSERIR > LIVRO **************\n\n");
+
+        System.out.print("Título: ");
+        String titulo = input.nextLine();
+
+        System.out.print("Data: ");
+        String data = input.nextLine();
+
+        System.out.print("Nº Páginas: ");
+        int nPaginas = input.nextInt();
+
+        Livro livro = new Livro(titulo, data, nPaginas);
+
+        lib.inserirItem(livro);
+
+        System.out.println("\n\n*********** livro inserido com sucesso **************\n\n");
+    }
+
+    private static void goInsertCD() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("*********** MENU PRINCIPAL > INSERIR > CD **************\n\n");
+
+        System.out.print("Título: ");
+        String titulo = input.nextLine();
+
+        System.out.print("Data: ");
+        String data = input.nextLine();
+
+        System.out.print("Tempo de reprodução: ");
+        int tempoDeReproducao = input.nextInt();
+
+        Cd cd = new Cd(titulo, data, tempoDeReproducao);
+
+        lib.inserirItem(cd);
+
+        System.out.println("\n\n*********** CD inserido com sucesso **************\n\n");
+    }
+
+    private static void goInsertUtilizador() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("*********** MENU PRINCIPAL > INSERIR > UTILIZADOR **************\n\n");
+
+        System.out.print("Nome: ");
+        String nome = input.nextLine();
+
+        System.out.print("Sobrenome: ");
+        String sobrenome = input.nextLine();
+
+        System.out.print("Tipo [ 1- Biliotecario | 2- Estudante ]: ");
+        int tipo = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Username: ");
+        String username = input.nextLine();
+
+        System.out.print("Senha: ");
+        String senha = input.nextLine();
+
+        Usuario user = new Usuario(nome, sobrenome,
+                tipo == 1 ? EnumUsuario.TipoUsuario.bibliotecario : EnumUsuario.TipoUsuario.estudante, username, senha);
+
+        lib.inserirUsuario(user);
+
+        System.out.println("\n\n*********** Usuário inserido com sucesso **************\n\n");
+    }
+
+    private static void goInsertRevista() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("*********** MENU PRINCIPAL > INSERIR > REVISTA **************\n\n");
+
+        System.out.print("Título: ");
+        String titulo = input.nextLine();
+
+        System.out.print("Data: ");
+        String data = input.nextLine();
+
+        System.out.print("Nº de edições: ");
+        int numeroDeEdicoes = input.nextInt();
+
+        Revista revista = new Revista(titulo, data, numeroDeEdicoes);
+
+        lib.inserirItem(revista);
+
+        System.out.println("\n\n*********** Revista inserido com sucesso **************\n\n");
+    }
+
+    private static void goInsert() {
         char chave = '1';
         Scanner input = new Scanner(System.in);
 
         do {
-            System.out.println("1) Criar Livro\n");
-            System.out.println("2) Criar CD\n");
-            System.out.println("3) Criar Revista\n");
-            System.out.println("4) Criar Usuário\n");
+            System.out.println("*********** MENU PRINCIPAL > INSERIR **************\n\n");
+
+            System.out.println("1) Livro\n");
+            System.out.println("2) CD\n");
+            System.out.println("3) Revista\n");
+            System.out.println("4) Utilizador\n");
+            System.out.println("5) Autor\n");
+            System.out.println("x) Voltar\n");
+
+            chave = input.nextLine().charAt(0);
+
+            if (chave == '1')
+                goInsertLivro();
+
+            if (chave == '2')
+                goInsertCD();
+
+            if (chave == '3')
+                goInsertRevista();
+
+            if (chave == '4')
+                goInsertUtilizador();
+
+        } while (chave != 'x');
+    }
+
+    private static void goListLivro() {
+        System.out.println("\n\n*********** LISTA DE LIVROS **************\n");
+
+        for (Item item : lib.getItens()) {
+            if (item instanceof Livro) {
+                Livro k = (Livro) item;
+                System.out.println("Título: " + k.getTitulo());
+                System.out.println("Data: " + k.getData());
+                System.out.println("Nº Páginas: " + k.getNumeroDePaginas());
+                System.out.println("\n******* Autores ******\n");
+                for (Autor autor : k.getAutores()) {
+                    System.out.println(autor.getNome() + " " + autor.getSobrenome());
+                }
+            }
+        }
+
+        System.out.println("\n\n");
+    }
+
+    private static void goListCD() {
+        System.out.println("\n\n*********** LISTA DE CD **************\n");
+
+        for (Item item : lib.getItens()) {
+            if (item instanceof Cd) {
+                Cd k = (Cd) item;
+                System.out.println("Título: " + k.getTitulo());
+                System.out.println("Data: " + k.getData());
+                System.out.println("Tempo de Reprodução: " + k.getTempoDeReproducao());
+                System.out.println("\n******* Autores ******\n");
+                for (Autor autor : k.getAutores()) {
+                    System.out.println(autor.getNome() + " " + autor.getSobrenome());
+                }
+            }
+        }
+
+        System.out.println("\n\n");
+    }
+
+    private static void goListRevista() {
+        System.out.println("\n\n*********** LISTA DE REVISTA **************\n");
+
+        for (Item item : lib.getItens()) {
+            if (item instanceof Revista) {
+                Revista k = (Revista) item;
+                System.out.println("Título: " + k.getTitulo());
+                System.out.println("Data: " + k.getData());
+                System.out.println("Número de Edições: " + k.getNumeroDeEdicoes());
+                System.out.println("\n******* Autores ******\n");
+                for (Autor autor : k.getAutores()) {
+                    System.out.println(autor.getNome() + " " + autor.getSobrenome());
+                }
+            }
+        }
+
+        System.out.println("\n\n");
+    }
+
+    private static void goListUtilizador() {
+        System.out.println("\n\n*********** LISTA DE UTILIZADOR **************\n");
+
+        for (Usuario user : lib.getUsuarios()) {
+            System.out.println("Nome: " + user.getNome());
+            System.out.println("Sobrenome: " + user.getSobrenome());
+            System.out.println("Tipo: " + user.getTipo());
+            System.out.println("Username: " + user.getUsername());
+            System.out.println("-----------------------------------\n");
+        }
+
+        System.out.println("\n\n");
+    }
+
+    private static void goList() {
+        char chave = '1';
+        Scanner input = new Scanner(System.in);
+
+        do {
+            System.out.println("*********** MENU PRINCIPAL > LISTAR **************\n\n");
+
+            System.out.println("1) Livro\n");
+            System.out.println("2) CD\n");
+            System.out.println("3) Revista\n");
+            System.out.println("4) Utilizador\n");
+            System.out.println("x) Voltar\n");
+
+            chave = input.nextLine().charAt(0);
+
+            if (chave == '1')
+                goListLivro();
+
+            if (chave == '2')
+                goListCD();
+
+            if (chave == '3')
+                goListRevista();
+
+            if (chave == '4')
+                goListUtilizador();
+
+        } while (chave != 'x');
+    }
+
+    private static void goMainMenu() {
+        char chave = '1';
+        Scanner input = new Scanner(System.in);
+
+        do {
+            System.out.println("*********** MENU PRINCIPAL **************\n\n");
+
+            System.out.println("1) Inserir\n");
+            System.out.println("2) Listar\n");
+            System.out.println("3) Alterar\n");
+            System.out.println("4) Eliminar\n");
             System.out.println("x) Sair\n");
 
             chave = input.nextLine().charAt(0);
+
+            if (chave == '1') {
+                clean();
+                goInsert();
+            }
+
+            if (chave == '2') {
+                clean();
+                goList();
+            }
 
         } while (chave != 'x');
     }
 
     private static void goMainMenuUserNormal() {
-        System.out.println("*********** MENU PRINCIPAL **************\n\n");
         char chave = '1';
         Scanner input = new Scanner(System.in);
 
         do {
+            System.out.println("*********** MENU PRINCIPAL **************\n\n");
+
             System.out.println("1) Emprestar Livro\n");
             System.out.println("2) Emprestar CD\n");
             System.out.println("3) Emprestar Revista\n");
