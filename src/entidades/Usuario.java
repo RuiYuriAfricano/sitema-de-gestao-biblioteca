@@ -4,6 +4,7 @@ import enums.EnumUsuario.TipoUsuario;;
 
 public class Usuario {
     // Atributos
+    private int idUsuario;
     private String nome;
     private String sobrenome;
     private TipoUsuario tipo;
@@ -23,6 +24,12 @@ public class Usuario {
     }
 
     // Getters e Setters
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    public int getIdUsuario() {
+        return idUsuario;
+    }
     public void setNome(String nome) {
         this.nome = nome;
     }

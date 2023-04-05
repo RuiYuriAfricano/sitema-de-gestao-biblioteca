@@ -18,6 +18,8 @@ public class Livro extends Item {
         super(titulo, data);
         this.numeroDePaginas = numeroDePaginas;
     }
+    public Livro(){
+    }
 
     //getters e setters
     public int getNumeroDePaginas() {

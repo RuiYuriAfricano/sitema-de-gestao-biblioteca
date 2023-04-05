@@ -4,29 +4,32 @@ import java.util.ArrayList;
 
 public abstract class Item {
     //Atributos
+    protected int idItem;
     protected String titulo;
-    protected ArrayList<Autor> autores;
     protected String data;
 
     //Construtor
     public Item(String titulo, String data){
         this.titulo = titulo;
         this.data = data;
-        autores = new ArrayList<>();
     }
+    public Item(){}
+    
+    
     // Getters e Setters
+
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
+    
     public String getTitulo() {
         return titulo;
     }
-    public ArrayList<Autor> getAutores() {
-        return autores;
-    }
-    public String getData() {
-        return data;
-    }
-    public void setAutores(ArrayList<Autor> autores) {
-        this.autores = autores;
-    }
+    
     public void setData(String data) {
         this.data = data;
     }
@@ -34,8 +37,9 @@ public abstract class Item {
         this.titulo = titulo;
     }
 
-    //Adicionar autores
-    public void adicionarAutor(Autor autor){
-        this.autores.add(autor);
+    public String getData() {
+        return data;
     }
+
+    
 }

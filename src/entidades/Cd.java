@@ -17,7 +17,10 @@ public class Cd extends Item{
     public Cd(String titulo, String data, int tempoDeReproducao){
         super(titulo, data);
         this.tempoDeReproducao = tempoDeReproducao;
-    }    
+    }  
+    public Cd(){
+        
+    }
 
     //Getters Setters
     public void setTempoDeReproducao(int tempoDeReproducao) {

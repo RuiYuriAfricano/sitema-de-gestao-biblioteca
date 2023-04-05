@@ -14,6 +14,8 @@ public class ItemEmprestado {
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
     }
+    public ItemEmprestado() {
+    }
 
     // setters e getters
     public void setItem(Item item) {

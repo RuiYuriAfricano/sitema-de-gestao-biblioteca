@@ -1,129 +1,96 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dados;
 
+import entidades.Autor;
 import entidades.Usuario;
 import enums.EnumUsuario;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Total Energies
- */
-public class UsuarioDAO {
+
+public class AutorDAO {
     
     Connection conn;
     PreparedStatement pstm;
     ResultSet rs;
-    ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    ArrayList<Autor> listaAutores = new ArrayList<>();
     
-    //Inserir usuario na bd
-    public void inserirUsuario(Usuario user){
-        String sql = "insert into tbusuario(nome_usuario, sobrenome_usuario, username, senha, tipo_usuario) values(?, ?, ?, ?, ?)";
+    //Inserir autor na bd
+    public void inserirAutor(Autor autor){
+        String sql = "insert into tbautor(nome_autor, sobrenome_autor) values(?, ?)";
         conn = new Conexao().conectaBD();
         
         try{
             pstm = conn.prepareStatement(sql);
-            pstm.setString(1, user.getNome());
-            pstm.setString(2, user.getSobrenome());
-            pstm.setString(3, user.getUsername());
-            pstm.setString(4, user.getSenha());
-            
-            if(user.getTipo() == EnumUsuario.TipoUsuario.estudante)
-                pstm.setString(5, "estudante");
-            else
-                pstm.setString(5, "bibliotecario");
+            pstm.setString(1, autor.getNome());
+            pstm.setString(2, autor.getSobrenome());
             
             pstm.execute();
             pstm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .close();
         }catch(SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ao inserir usuarioDAO: "+ erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao inserir autorDAO: "+ erro.getMessage());
         }
     }
     
-    //Listar Usuário da bd
-    public ArrayList<Usuario> listarUsuario(){
+    //Listar autor da bd
+    public ArrayList<Autor> listarAutor(){
         
-        String sql = "select * from tbusuario";
+        String sql = "select * from tbautor";
         conn = new Conexao().conectaBD();
         try {
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
             
             while(rs.next()){
-                Usuario user = new Usuario();
-                user.setIdUsuario(rs.getInt("id_usuario"));
-                user.setNome(rs.getString("nome_usuario"));
-                user.setSobrenome(rs.getString("sobrenome_usuario"));
-                user.setUsername(rs.getString("username"));
-                user.setSenha(rs.getString("senha"));
-                if(rs.getString("tipo_usuario").equalsIgnoreCase("estudante"))
-                    user.setTipo(EnumUsuario.TipoUsuario.estudante);
-                else
-                    user.setTipo(EnumUsuario.TipoUsuario.bibliotecario);
-                listaUsuarios.add(user);
+                Autor autor = new Autor();
+                autor.setIdAutor(rs.getInt("id_autor"));
+                autor.setNome(rs.getString("nome_autor"));
+                autor.setSobrenome(rs.getString("sobrenome_autor"));
+                listaAutores.add(autor);
             }
             
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar usuarioDAO: "+ erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar autorDAO: "+ erro.getMessage());
         }
-        return listaUsuarios;
+        return listaAutores;
     }
     
-    //alterar usuario na bd
-    public void alterarUsuario(Usuario user){
-        String sql = "update tbusuario set nome_usuario = ?, sobrenome_usuario = ?, username = ?, senha = ?, tipo_usuario = ? where id_usuario = ?";
+    //alterar autor na bd
+    public void alterarAutor(Autor autor){
+        String sql = "update tbautor set nome_autor = ?, sobrenome_autor = ? where id_autor = ?";
         conn = new Conexao().conectaBD();
         
         try{
             pstm = conn.prepareStatement(sql);
             
-            pstm.setString(1, user.getNome());
-            pstm.setString(2, user.getSobrenome());
-            pstm.setString(3, user.getUsername());
-            pstm.setString(4, user.getSenha());
+            pstm.setString(1, autor.getNome());
+            pstm.setString(2, autor.getSobrenome());
             
-            if(user.getTipo() == EnumUsuario.TipoUsuario.estudante)
-                pstm.setString(5, "estudante");
-            else
-                pstm.setString(5, "bibliotecario");
-            
-            pstm.setInt(6, user.getIdUsuario());
+            pstm.setInt(3, autor.getIdAutor());
             pstm.execute();
             pstm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .close();
         }catch(SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ao alterar usuarioDAO: "+ erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao alterar autorDAO: "+ erro.getMessage());
         }
     }
     
-    //excluir usuario na bd
-    public void excluirUsuario(Usuario user){
-        String sql = "delete from tbusuario where id_usuario = ?";
+    //excluir autor na bd
+    public void excluirAutor(Autor autor){
+        String sql = "delete from tbautor where id_autor = ?";
         conn = new Conexao().conectaBD();
         
         try{
             pstm = conn.prepareStatement(sql);
             
             
-            pstm.setInt(1, user.getIdUsuario());
+            pstm.setInt(1, autor.getIdAutor());
             pstm.execute();
             pstm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .close();
         }catch(SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ao eliminar usuarioDAO: "+ erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao eliminar autorDAO: "+ erro.getMessage());
         }
     }
-    
-    
-
-    
-
 }

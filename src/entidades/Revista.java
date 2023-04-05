@@ -18,6 +18,9 @@ public class Revista extends Item {
         super(titulo, data);
         this.numeroDeEdicoes = numeroDeEdicoes;
     }
+    public Revista(){
+        
+    }
 
     //setters e getters
     public void setNumeroDeEdicoes(int numeroDeEdicoes) {
