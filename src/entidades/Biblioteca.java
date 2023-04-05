@@ -1,5 +1,6 @@
 package entidades;
 
+import dados.UsuarioDAO;
 import java.util.ArrayList;
 
 public class Biblioteca {
@@ -8,14 +9,35 @@ public class Biblioteca {
     private ArrayList<Usuario> usuarios;
     private ArrayList<ItemEmprestado> itensEmprestados;
 
+    public ArrayList<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Item> itens) {
+        this.itens = itens;
+    }
+
+    public ArrayList<ItemEmprestado> getItensEmprestados() {
+        return itensEmprestados;
+    }
+
+    public void setItensEmprestados(ArrayList<ItemEmprestado> itensEmprestados) {
+        this.itensEmprestados = itensEmprestados;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    
+    
     public Biblioteca() {
         itens = new ArrayList<>();
         usuarios = new ArrayList<>();
         itensEmprestados = new ArrayList<>();
-    }
-
-    public ArrayList<Item> getItens() {
-        return this.itens;
+        
+        //Sempre que começar a aplicação carrega os dados no array list
+        this.preencherListaUsuarios();
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -252,5 +274,9 @@ public class Biblioteca {
             return true;
 
         return false;
+    }
+    private void preencherListaUsuarios(){
+        UsuarioDAO userDao = new UsuarioDAO();
+        this.setUsuarios(userDao.ListarUsuario());
     }
 }

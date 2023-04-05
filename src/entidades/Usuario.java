@@ -11,6 +11,9 @@ public class Usuario {
     private String senha;
 
     // construtor
+    public Usuario() {
+        
+    }
     public Usuario(String nome, String sobrenome, TipoUsuario tipo, String username, String senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;
