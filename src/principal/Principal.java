@@ -137,20 +137,28 @@ public class Principal {
         Scanner input = new Scanner(System.in);
         System.out.println("*********** MENU PRINCIPAL > INSERIR > UTILIZADOR **************\n\n");
 
-        System.out.print("Título: ");
-        String titulo = input.nextLine();
+        System.out.print("Nome: ");
+        String nome = input.nextLine();
 
-        System.out.print("Data: ");
-        String data = input.nextLine();
+        System.out.print("Sobrenome: ");
+        String sobrenome = input.nextLine();
 
-        System.out.print("Tempo de reprodução: ");
-        int tempoDeReproducao = input.nextInt();
+        System.out.print("Tipo [ 1- Biliotecario | 2- Estudante ]: ");
+        int tipo = input.nextInt();
+        input.nextLine();
 
-        Usuario user = new  Usuario(data, data, null, titulo, data)
+        System.out.print("Username: ");
+        String username = input.nextLine();
+
+        System.out.print("Senha: ");
+        String senha = input.nextLine();
+
+        Usuario user = new Usuario(nome, sobrenome,
+                tipo == 1 ? EnumUsuario.TipoUsuario.bibliotecario : EnumUsuario.TipoUsuario.estudante, username, senha);
 
         lib.inserirUsuario(user);
 
-        System.out.println("\n\n*********** CD inserido com sucesso **************\n\n");
+        System.out.println("\n\n*********** Usuário inserido com sucesso **************\n\n");
     }
 
     private static void goInsertRevista() {
@@ -269,6 +277,7 @@ public class Principal {
             System.out.println("Sobrenome: " + user.getSobrenome());
             System.out.println("Tipo: " + user.getTipo());
             System.out.println("Username: " + user.getUsername());
+            System.out.println("-----------------------------------\n");
         }
 
         System.out.println("\n\n");
