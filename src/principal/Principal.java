@@ -8,6 +8,7 @@ import entidades.Item;
 import entidades.Livro;
 import entidades.Revista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import enums.EnumUsuario;
 
@@ -18,39 +19,68 @@ public class Principal {
     public static void main(String[] args) {
         lib = new Biblioteca();
 
-        addDefaultUser();
+        loadInitialData();
 
         Scanner input = new Scanner(System.in);
         char reader = '2';
 
         do {
-            System.out.println("************** Bem-Vindo *********************\n\n");
+            System.out.println("\n\n************** Bem-Vindo *********************\n\n");
 
             System.out.println("1) Login\n");
-            System.out.println("2) Sair\n");
+            System.out.println("x) Sair\n");
 
             reader = input.nextLine().charAt(0);
 
             if (reader == '1') {
                 clean();
                 goLogin();
-
-                reader = '2';
             }
 
-        } while (reader != '2');
+        } while (reader != 'x');
+
     }
 
     private static void clean() {
         System.out.println("\n\n\n");
     }
 
-    private static void addDefaultUser() {
+    private static void loadInitialData() {
         Usuario isptec = new Usuario("Biblioteca", "Isptec", EnumUsuario.TipoUsuario.bibliotecario, "isptec", "123");
         Usuario jose = new Usuario("José", "Ndonge", EnumUsuario.TipoUsuario.estudante, "jose", "123");
+        Usuario rui = new Usuario("Rui", "Malemba", EnumUsuario.TipoUsuario.estudante, "rui", "123");
+        Usuario julia = new Usuario("Julia", "Camana", EnumUsuario.TipoUsuario.estudante, "julia", "123");
 
+        lib.inserirUsuario(rui);
+        lib.inserirUsuario(julia);
         lib.inserirUsuario(jose);
         lib.inserirUsuario(isptec);
+
+        // Autores
+        ArrayList<Autor> autores = new ArrayList<>();
+
+        autores.add(new Autor("Rui", "Orlando"));
+        autores.add(new Autor("Gustavo", "Guanabara"));
+        autores.add(new Autor("Diego", "Fernandes"));
+
+        // --- Livro
+        lib.inserirItem(new Livro("Um amor para recordar", "10/10/2001", 10));
+        lib.inserirItem(new Livro("Tudo e todoas as coisas", "10/10/2002", 20));
+        lib.inserirItem(new Livro("Romeu e Julieta", "10/10/2003", 30));
+
+        // --- CD
+        lib.inserirItem(new Cd("Os Lambas", "10/10/2001", 10));
+        lib.inserirItem(new Cd("Perola", "10/10/2002", 20));
+        lib.inserirItem(new Cd("Matias Damazio", "10/10/2003", 30));
+
+        // --- Revista
+        lib.inserirItem(new Revista("React Native 20201", "10/10/2001", 10));
+        lib.inserirItem(new Revista("Java 203", "10/10/2002", 20));
+        lib.inserirItem(new Revista("Android 293", "10/10/2003", 30));
+
+        for (Item item : lib.getItens()) {
+            item.adicionarAutores(autores);
+        }
     }
 
     private static void goLogin() {
@@ -226,8 +256,10 @@ public class Principal {
                     System.out.println(autor.getNome() + " " + autor.getSobrenome());
                 }
             }
-        }
 
+            System.out.println("----------------------------------------\n");
+        }
+        System.out.println("--------------------------------\n");
         System.out.println("\n\n");
     }
 
@@ -245,6 +277,7 @@ public class Principal {
                     System.out.println(autor.getNome() + " " + autor.getSobrenome());
                 }
             }
+            System.out.println("----------------------------------------\n");
         }
 
         System.out.println("\n\n");
@@ -264,6 +297,8 @@ public class Principal {
                     System.out.println(autor.getNome() + " " + autor.getSobrenome());
                 }
             }
+
+            System.out.println("----------------------------------------\n");
         }
 
         System.out.println("\n\n");
@@ -313,6 +348,54 @@ public class Principal {
         } while (chave != 'x');
     }
 
+    private static void goEliminarItem() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n\n*********** LISTA DE ITENS **************\n\n");
+
+        int i = 0;
+
+        for (Item iten : lib.getItens()) {
+            i++;
+
+            System.out.println("Nº: " + i);
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Data: " + iten.getData());
+
+            if (iten instanceof Cd) {
+                System.out.println("Tipo: CD");
+                System.out.println("Tempo de Reprodução: " + ((Cd) iten).getTempoDeReproducao());
+            }
+
+            if (iten instanceof Livro) {
+                System.out.println("Tipo: Livro");
+                System.out.println("Nº Páginas: " + ((Livro) iten).getNumeroDePaginas());
+            }
+
+            if (iten instanceof Revista) {
+                System.out.println("Tipo: Revista");
+                System.out.println("Nº Edições: " + ((Revista) iten).getNumeroDeEdicoes());
+            }
+            System.out.println("\n\n-------------------------------------\n\n");
+        }
+
+        System.out.print("\n Nº do item a eliminar: ");
+        int chave = input.nextInt() - 1;
+
+        ArrayList<Item> items = lib.getItens();
+
+        if (chave >= 0 && chave < items.size()) {
+            items.remove(items.get(chave));
+            lib.addItems(items);
+
+            System.out.print("\nItem Eliminado com sucesso!!!! \n\n");
+        } else {
+            System.out.print("\n\nAtenção: Item não encontrado, enter para continuar...!\n\n");
+        }
+
+        input.nextLine();
+    }
+
     private static void goMainMenu() {
         char chave = '1';
         Scanner input = new Scanner(System.in);
@@ -322,8 +405,7 @@ public class Principal {
 
             System.out.println("1) Inserir\n");
             System.out.println("2) Listar\n");
-            System.out.println("3) Alterar\n");
-            System.out.println("4) Eliminar\n");
+            System.out.println("4) Eliminar Item\n");
             System.out.println("x) Sair\n");
 
             chave = input.nextLine().charAt(0);
@@ -338,7 +420,178 @@ public class Principal {
                 goList();
             }
 
+            if (chave == '4') {
+                clean();
+                goEliminarItem();
+            }
+
         } while (chave != 'x');
+    }
+
+    private static void goEmprestar() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n\n*********** LISTA DE ITENS DISPONIVEIS **************\n\n");
+
+        int i = 0;
+
+        for (Item iten : lib.getItens()) {
+            i++;
+
+            System.out.println("Nº: " + i);
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Data: " + iten.getData());
+
+            if (iten instanceof Cd) {
+                System.out.println("Tipo: CD");
+                System.out.println("Tempo de Reprodução: " + ((Cd) iten).getTempoDeReproducao());
+            }
+
+            if (iten instanceof Livro) {
+                System.out.println("Tipo: Livro");
+                System.out.println("Nº Páginas: " + ((Livro) iten).getNumeroDePaginas());
+            }
+
+            if (iten instanceof Revista) {
+                System.out.println("Tipo: Revista");
+                System.out.println("Nº Edições: " + ((Revista) iten).getNumeroDeEdicoes());
+            }
+            System.out.println("\n\n-------------------------------------\n\n");
+        }
+
+        System.out.print("\n Nº do item a emprestar: ");
+        int chave = input.nextInt() - 1;
+
+        ArrayList<Item> items = lib.getItens();
+
+        if (chave >= 0 && chave < items.size()) {
+            loggedUser.addItem(items.get(chave));
+            items.remove(items.get(chave));
+            lib.addItems(items);
+
+            System.out.print("\nItem imprestado com sucesso!!!! \n\n");
+        } else {
+            System.out.print("\n\nAtenção: Item não encontrado, enter para continuar...!\n\n");
+        }
+
+        input.nextLine();
+    }
+
+    private static void goVerItensDisponiveis() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n\n*********** LISTA DE ITENS DISPONIVEIS **************\n\n");
+
+        int i = 0;
+
+        for (Item iten : lib.getItens()) {
+            i++;
+
+            System.out.println("Nº: " + i);
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Data: " + iten.getData());
+
+            if (iten instanceof Cd) {
+                System.out.println("Tipo: CD");
+                System.out.println("Tempo de Reprodução: " + ((Cd) iten).getTempoDeReproducao());
+            }
+
+            if (iten instanceof Livro) {
+                System.out.println("Tipo: Livro");
+                System.out.println("Nº Páginas: " + ((Livro) iten).getNumeroDePaginas());
+            }
+
+            if (iten instanceof Revista) {
+                System.out.println("Tipo: Revista");
+                System.out.println("Nº Edições: " + ((Revista) iten).getNumeroDeEdicoes());
+            }
+            System.out.println("\n\n-------------------------------------\n\n");
+        }
+
+        input.nextLine();
+    }
+
+    private static void goVerItensImprestados() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n\n*********** LISTA DE ITENS IMPRESTADOS **************\n\n");
+
+        int i = 0;
+
+        for (Item iten : loggedUser.getItens()) {
+            i++;
+
+            System.out.println("Nº: " + i);
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Data: " + iten.getData());
+
+            if (iten instanceof Cd) {
+                System.out.println("Tipo: CD");
+                System.out.println("Tempo de Reprodução: " + ((Cd) iten).getTempoDeReproducao());
+            }
+
+            if (iten instanceof Livro) {
+                System.out.println("Tipo: Livro");
+                System.out.println("Nº Páginas: " + ((Livro) iten).getNumeroDePaginas());
+            }
+
+            if (iten instanceof Revista) {
+                System.out.println("Tipo: Revista");
+                System.out.println("Nº Edições: " + ((Revista) iten).getNumeroDeEdicoes());
+            }
+            System.out.println("\n\n-------------------------------------\n\n");
+        }
+
+        input.nextLine();
+    }
+
+    private static void goDevolver() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n\n*********** LISTA DE ITENS EMPRESTADOS **************\n\n");
+
+        int i = 0;
+
+        for (Item iten : loggedUser.getItens()) {
+            i++;
+
+            System.out.println("Nº: " + i);
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Título: " + iten.getTitulo());
+            System.out.println("Data: " + iten.getData());
+
+            if (iten instanceof Cd) {
+                System.out.println("Tipo: CD");
+                System.out.println("Tempo de Reprodução: " + ((Cd) iten).getTempoDeReproducao());
+            }
+
+            if (iten instanceof Livro) {
+                System.out.println("Tipo: Livro");
+                System.out.println("Nº Páginas: " + ((Livro) iten).getNumeroDePaginas());
+            }
+
+            if (iten instanceof Revista) {
+                System.out.println("Tipo: Revista");
+                System.out.println("Nº Edições: " + ((Revista) iten).getNumeroDeEdicoes());
+            }
+            System.out.println("\n\n-------------------------------------\n\n");
+        }
+
+        System.out.print("\n Nº do item a devolver: ");
+        int chave = input.nextInt() - 1;
+
+        ArrayList<Item> items = loggedUser.getItens();
+
+        if (chave >= 0 && chave < items.size()) {
+            lib.inserirItem(items.get(chave));
+            items.remove(items.get(chave));
+            loggedUser.addItems(items);
+
+            System.out.print("\nItem devolvido com sucesso!!!! \n\n");
+        } else {
+            System.out.print("\n\nAtenção: Item não encontrado, enter para continuar...!\n\n");
+        }
+
+        input.nextLine();
     }
 
     private static void goMainMenuUserNormal() {
@@ -348,16 +601,26 @@ public class Principal {
         do {
             System.out.println("*********** MENU PRINCIPAL **************\n\n");
 
-            System.out.println("1) Emprestar Livro\n");
-            System.out.println("2) Emprestar CD\n");
-            System.out.println("3) Emprestar Revista\n");
-
-            System.out.println("4) Ver Itens Imprestados\n");
-            System.out.println("5) Ver Itens Disponiveis\n");
+            System.out.println("1) Emprestar Item\n");
+            System.out.println("2) Ver Itens Imprestados\n");
+            System.out.println("3) Ver Itens Disponiveis\n");
+            System.out.println("4) Devolver Item\n");
 
             System.out.println("x) Sair\n");
 
             chave = input.nextLine().charAt(0);
+
+            if (chave == '1')
+                goEmprestar();
+
+            if (chave == '2')
+                goVerItensImprestados();
+
+            if (chave == '3')
+                goVerItensDisponiveis();
+
+            if (chave == '4')
+                goDevolver();
 
         } while (chave != 'x');
     }

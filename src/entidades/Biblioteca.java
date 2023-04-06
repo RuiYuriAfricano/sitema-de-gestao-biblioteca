@@ -14,6 +14,10 @@ public class Biblioteca {
         itensEmprestados = new ArrayList<>();
     }
 
+    public void addItems(ArrayList<Item> itens) {
+        this.itens = itens;
+    }
+
     public ArrayList<Item> getItens() {
         return this.itens;
     }

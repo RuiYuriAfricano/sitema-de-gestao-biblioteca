@@ -3,39 +3,50 @@ package entidades;
 import java.util.ArrayList;
 
 public abstract class Item {
-    //Atributos
+    // Atributos
     protected String titulo;
     protected ArrayList<Autor> autores;
     protected String data;
 
-    //Construtor
-    public Item(String titulo, String data){
+    // Construtor
+    public Item(String titulo, String data) {
         this.titulo = titulo;
         this.data = data;
         autores = new ArrayList<>();
     }
+
     // Getters e Setters
     public String getTitulo() {
         return titulo;
     }
+
     public ArrayList<Autor> getAutores() {
         return autores;
     }
+
     public String getData() {
         return data;
     }
+
     public void setAutores(ArrayList<Autor> autores) {
         this.autores = autores;
     }
+
     public void setData(String data) {
         this.data = data;
     }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    //Adicionar autores
-    public void adicionarAutor(Autor autor){
+    // Adicionar autor
+    public void adicionarAutores(ArrayList<Autor> autores) {
+        this.autores = autores;
+    }
+
+    // Adicionar autor
+    public void adicionarAutores(Autor autor) {
         this.autores.add(autor);
     }
 }

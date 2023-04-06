@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.ArrayList;
+
 import enums.EnumUsuario.TipoUsuario;;
 
 public class Usuario {
@@ -9,6 +11,7 @@ public class Usuario {
     private TipoUsuario tipo;
     private String username;
     private String senha;
+    private ArrayList<Item> itensEmprestados;
 
     // construtor
     public Usuario(String nome, String sobrenome, TipoUsuario tipo, String username, String senha) {
@@ -17,6 +20,20 @@ public class Usuario {
         this.tipo = tipo;
         this.username = username;
         this.senha = senha;
+
+        itensEmprestados = new ArrayList<>();
+    }
+
+    public void addItem(Item item) {
+        this.itensEmprestados.add(item);
+    }
+
+    public void addItems(ArrayList<Item> items) {
+        this.itensEmprestados = items;
+    }
+
+    public ArrayList<Item> getItens() {
+        return this.itensEmprestados;
     }
 
     // Getters e Setters
