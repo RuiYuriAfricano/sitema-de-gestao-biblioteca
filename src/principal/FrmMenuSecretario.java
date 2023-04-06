@@ -14,8 +14,11 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
     /**
      * Creates new form FrmMenuSecretario
      */
-    public FrmMenuSecretario() {
+    public FrmMenuSecretario(String txtLogado) {
         initComponents();
+        this.setLocationRelativeTo(null); // centraliza o JFrame
+        this.setResizable(false); // torna o JFrame não redimensionável
+        lblLogadoComo.setText(txtLogado);
     }
 
     /**
@@ -27,87 +30,128 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnInserirLivro = new javax.swing.JButton();
+        btnListarLivro = new javax.swing.JButton();
+        btnInserirCd = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        btnInserirRevista = new javax.swing.JButton();
+        btnListarRevista = new javax.swing.JButton();
+        btnInserirUsuario = new javax.swing.JButton();
+        btnListarUsuario = new javax.swing.JButton();
+        btnInserirAutor = new javax.swing.JButton();
+        btnListarAutor = new javax.swing.JButton();
+        lblLogadoComo = new javax.swing.JLabel();
+        inserirEmprestimo = new javax.swing.JButton();
+        btnListarAutoria = new javax.swing.JButton();
+        btnInserirAutoria = new javax.swing.JButton();
+        listarItensEmprestados = new javax.swing.JButton();
+        listarItensDisponiveis = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu Secretario");
+        setTitle("Menu Bibliotecário");
 
-        jButton2.setText("Inserir Livro");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnInserirLivro.setText("Inserir Livro");
+        btnInserirLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnInserirLivroActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Listar Livro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnListarLivro.setText("Listar Livro");
+        btnListarLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnListarLivroActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Inserir CD");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnInserirCd.setText("Inserir CD");
+        btnInserirCd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnInserirCdActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Listar CD");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnListar.setText("Listar CD");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnListarActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Inserir Revista");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnInserirRevista.setText("Inserir Revista");
+        btnInserirRevista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnInserirRevistaActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Listar Revista");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnListarRevista.setText("Listar Revista");
+        btnListarRevista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnListarRevistaActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Inserir Usuario");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnInserirUsuario.setText("Inserir Usuario");
+        btnInserirUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnInserirUsuarioActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Listar Ususario");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnListarUsuario.setText("Listar Ususario");
+        btnListarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnListarUsuarioActionPerformed(evt);
             }
         });
 
-        jButton10.setText("Inserir Autor");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnInserirAutor.setText("Inserir Autor");
+        btnInserirAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnInserirAutorActionPerformed(evt);
             }
         });
 
-        jButton11.setText("Listar Autor");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnListarAutor.setText("Listar Autor");
+        btnListarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnListarAutorActionPerformed(evt);
+            }
+        });
+
+        inserirEmprestimo.setText("Inserir Empréstimo");
+        inserirEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inserirEmprestimoActionPerformed(evt);
+            }
+        });
+
+        btnListarAutoria.setText("Listar Autoria");
+        btnListarAutoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarAutoriaActionPerformed(evt);
+            }
+        });
+
+        btnInserirAutoria.setText("Inserir Autoria");
+        btnInserirAutoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirAutoriaActionPerformed(evt);
+            }
+        });
+
+        listarItensEmprestados.setText("Listar Itens Emprestados");
+        listarItensEmprestados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarItensEmprestadosActionPerformed(evt);
+            }
+        });
+
+        listarItensDisponiveis.setText("Listar Itens Disponíveis");
+        listarItensDisponiveis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarItensDisponiveisActionPerformed(evt);
             }
         });
 
@@ -117,89 +161,166 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnInserirAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInserirUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInserirRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInserirCd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInserirLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInserirAutoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLogadoComo)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnListarLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnListarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnListarAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnListarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnListarAutoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(inserirEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(109, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(listarItensDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listarItensEmprestados, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnInserirLivro)
+                    .addComponent(btnListarLivro))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btnInserirCd)
+                    .addComponent(btnListar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(btnInserirRevista)
+                    .addComponent(btnListarRevista))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(btnInserirUsuario)
+                    .addComponent(btnListarUsuario))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addComponent(btnInserirAutor)
+                    .addComponent(btnListarAutor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListarAutoria)
+                    .addComponent(btnInserirAutoria))
+                .addGap(8, 8, 8)
+                .addComponent(inserirEmprestimo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(listarItensEmprestados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(listarItensDisponiveis)
+                .addGap(18, 18, 18)
+                .addComponent(lblLogadoComo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnInserirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirLivroActionPerformed
+        FrmAddLivro frmLivro = new FrmAddLivro(lblLogadoComo.getText().toString());
+        frmLivro.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnInserirLivroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnListarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarLivroActionPerformed
+        FrmListarLivro frmLivro = new FrmListarLivro(lblLogadoComo.getText().toString());
+        frmLivro.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnListarLivroActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnInserirCdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirCdActionPerformed
+        FrmAddCd frmCD = new FrmAddCd(lblLogadoComo.getText().toString());
+        frmCD.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnInserirCdActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+          FrmListarCd cd = new FrmListarCd(lblLogadoComo.getText().toString());
+          cd.setVisible(true);
+          dispose();
+    }//GEN-LAST:event_btnListarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btnInserirRevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirRevistaActionPerformed
+        FrmAddRevista revista = new FrmAddRevista(lblLogadoComo.getText().toString());
+        revista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnInserirRevistaActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void btnListarRevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarRevistaActionPerformed
+        FrmListarRevista revista = new FrmListarRevista(lblLogadoComo.getText().toString());
+        revista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnListarRevistaActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void btnInserirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirUsuarioActionPerformed
+        FrmAddUsuario usuario = new FrmAddUsuario(lblLogadoComo.getText().toString());
+        usuario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnInserirUsuarioActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void btnListarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarUsuarioActionPerformed
+        FrmListarUsuario usuario = new FrmListarUsuario(lblLogadoComo.getText().toString());
+        usuario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnListarUsuarioActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void btnInserirAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirAutorActionPerformed
+        FrmAddAutor autor = new FrmAddAutor(lblLogadoComo.getText().toString());
+        autor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnInserirAutorActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void btnListarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAutorActionPerformed
+        FrmListarAutor autor = new FrmListarAutor(lblLogadoComo.getText().toString());
+        autor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnListarAutorActionPerformed
+
+    private void inserirEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirEmprestimoActionPerformed
+           FrmAddEmprestimo emp = new FrmAddEmprestimo(lblLogadoComo.getText().toString());
+           emp.setVisible(true);
+           dispose();
+    }//GEN-LAST:event_inserirEmprestimoActionPerformed
+
+    private void btnListarAutoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAutoriaActionPerformed
+        FrmListarAutoria autoria = new FrmListarAutoria(lblLogadoComo.getText().toString());
+        autoria.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnListarAutoriaActionPerformed
+
+    private void btnInserirAutoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirAutoriaActionPerformed
+        FrmAddAutoria autoria = new FrmAddAutoria(lblLogadoComo.getText().toString());
+        autoria.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnInserirAutoriaActionPerformed
+
+    private void listarItensEmprestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarItensEmprestadosActionPerformed
+        FrmListarItensEmprestados emp = new FrmListarItensEmprestados(lblLogadoComo.getText().toString());
+        emp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_listarItensEmprestadosActionPerformed
+
+    private void listarItensDisponiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarItensDisponiveisActionPerformed
+        FrmListarItensDisponiveis itensDisp = new FrmListarItensDisponiveis(lblLogadoComo.getText().toString());
+        itensDisp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_listarItensDisponiveisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,21 +352,27 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMenuSecretario().setVisible(true);
+                new FrmMenuSecretario("").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btnInserirAutor;
+    private javax.swing.JButton btnInserirAutoria;
+    private javax.swing.JButton btnInserirCd;
+    private javax.swing.JButton btnInserirLivro;
+    private javax.swing.JButton btnInserirRevista;
+    private javax.swing.JButton btnInserirUsuario;
+    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnListarAutor;
+    private javax.swing.JButton btnListarAutoria;
+    private javax.swing.JButton btnListarLivro;
+    private javax.swing.JButton btnListarRevista;
+    private javax.swing.JButton btnListarUsuario;
+    private javax.swing.JButton inserirEmprestimo;
+    private javax.swing.JLabel lblLogadoComo;
+    private javax.swing.JButton listarItensDisponiveis;
+    private javax.swing.JButton listarItensEmprestados;
     // End of variables declaration//GEN-END:variables
 }

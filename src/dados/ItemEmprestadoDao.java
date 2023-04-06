@@ -1,8 +1,10 @@
 package dados;
 
 import entidades.Autor;
+import entidades.Item;
 import entidades.ItemAutor;
 import entidades.ItemEmprestado;
+import entidades.Livro;
 import entidades.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,6 +50,9 @@ public class ItemEmprestadoDao {
             
             while(rs.next()){
                 ItemEmprestado itemEmprestado = new ItemEmprestado();
+                itemEmprestado.setUsuario(new Usuario());
+                itemEmprestado.setItem(new Livro());
+                        
                 
                 itemEmprestado.getItem().setTitulo(rs.getString("titulo_item"));
                 itemEmprestado.getItem().setIdItem(rs.getInt("id_item"));
@@ -79,6 +84,8 @@ public class ItemEmprestadoDao {
             
             while(rs.next()){
                 ItemEmprestado itemEmprestado = new ItemEmprestado();
+                itemEmprestado.setUsuario(new Usuario());
+                itemEmprestado.setItem(new Livro());
                 
                 itemEmprestado.getItem().setTitulo(rs.getString("titulo_item"));
                 itemEmprestado.getItem().setIdItem(rs.getInt("id_item"));
@@ -109,6 +116,7 @@ public class ItemEmprestadoDao {
             
             while(rs.next()){
                 ItemEmprestado itemEmprestado = new ItemEmprestado();
+                itemEmprestado.setItem(new Livro());
                 
                 itemEmprestado.getItem().setTitulo(rs.getString("titulo_item"));
                 itemEmprestado.getItem().setIdItem(rs.getInt("id_item"));

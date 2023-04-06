@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -26,7 +27,7 @@ public class RevistaDao {
         try {
 
             //Insere item
-            pstm = conn.prepareStatement(sql1);
+            pstm = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, revista.getTitulo());
             pstm.setString(2, revista.getData());
 

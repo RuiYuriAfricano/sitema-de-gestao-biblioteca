@@ -5,6 +5,13 @@
  */
 package principal;
 
+import dados.UsuarioDAO;
+import entidades.Usuario;
+import enums.EnumUsuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Total Energies
@@ -16,6 +23,8 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        this.setLocationRelativeTo(null); // centraliza o JFrame
+        this.setResizable(false); // torna o JFrame não redimensionável
     }
 
     /**
@@ -31,7 +40,7 @@ public class FrmLogin extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -40,7 +49,12 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha");
 
-        jButton1.setText("Entar");
+        btnEntrar.setText("Entar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,7 +63,7 @@ public class FrmLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1)
+                    .addComponent(btnEntrar)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(txtUsername)
@@ -68,12 +82,16 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addComponent(btnEntrar)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        this.logar();
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,10 +129,43 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+private void logar() {
+        try {
+            String username, senha;
+            username = txtUsername.getText();
+            senha = txtSenha.getText();
+
+            Usuario user = new Usuario();
+            user.setUsername(username);
+            user.setSenha(senha);
+            
+            UsuarioDAO userDAO = new UsuarioDAO();
+            ResultSet rs = userDAO.autenticacaoUsuario(user);
+            
+            if (rs.next()) {
+                if (rs.getString("tipo_usuario").equalsIgnoreCase("estudante")) {
+                    FrmMenuEstudante est = new FrmMenuEstudante("Usuário: "+rs.getString("nome_usuario")+" "+rs.getString("sobrenome_usuario"));
+                    est.setVisible(true);
+                    dispose();
+                } else {
+                    FrmMenuSecretario sec = new FrmMenuSecretario("Usuário: "+rs.getString("nome_usuario")+" "+rs.getString("sobrenome_usuario"));
+                    sec.setVisible(true);
+                    dispose();
+                }
+            } else {
+                //enviar msg dizendo incorreto
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválida");
+            }
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "frmLoginView: "+erro);
+        }
+    }
 }

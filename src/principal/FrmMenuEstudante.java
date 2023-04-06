@@ -14,8 +14,11 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
     /**
      * Creates new form FrmMenuEstudante
      */
-    public FrmMenuEstudante() {
+    public FrmMenuEstudante(String txtLogado) {
         initComponents();
+        this.setLocationRelativeTo(null); // centraliza o JFrame
+        this.setResizable(false); // torna o JFrame não redimensionável
+        lblLogadoComo.setText("Usuário: "+txtLogado);
     }
 
     /**
@@ -31,6 +34,7 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        lblLogadoComo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Estudante");
@@ -70,6 +74,7 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLogadoComo)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -79,7 +84,7 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
@@ -87,7 +92,9 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addGap(118, 118, 118))
+                .addGap(89, 89, 89)
+                .addComponent(lblLogadoComo)
+                .addContainerGap())
         );
 
         pack();
@@ -139,7 +146,7 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMenuEstudante().setVisible(true);
+                new FrmMenuEstudante("").setVisible(true);
             }
         });
     }
@@ -149,6 +156,6 @@ public class FrmMenuEstudante extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel lblLogadoComo;
     // End of variables declaration//GEN-END:variables
 }

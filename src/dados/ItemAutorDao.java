@@ -3,6 +3,7 @@ package dados;
 import entidades.Autor;
 import entidades.Item;
 import entidades.ItemAutor;
+import entidades.Livro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +38,7 @@ public class ItemAutorDao {
     //Listar itemautor da bd
     public ArrayList<ItemAutor> listarItemAutor(){
         
-        String sql = "select id_item, titulo_item, id_autor, nome_autor, sobrenome_autor from tb_item_autor, tbitem, tbautor where fk_item = id_item and fk_autor = id_autor";
+        String sql = "select id_item, titulo_item, id_autor, nome_autor, sobrenome_autor from tbitem, tbautor, tb_item_autor where fk_item = id_item and tb_item_autor.fk_autor = id_autor";
         conn = new Conexao().conectaBD();
         try {
             pstm = conn.prepareStatement(sql);
@@ -45,7 +46,8 @@ public class ItemAutorDao {
             
             while(rs.next()){
                 ItemAutor itemAutor = new ItemAutor();
-                
+                itemAutor.setAutor(new Autor());
+                itemAutor.setItem(new Livro());
                 itemAutor.getItem().setTitulo(rs.getString("titulo_item"));
                 itemAutor.getItem().setIdItem(rs.getInt("id_item"));
                 
