@@ -1,7 +1,7 @@
 package entidades;
 
 public class Autor {
-    //Atributos
+    /**/Atributos
     private int idAutor;
     private String nome;
     private String sobrenome;
