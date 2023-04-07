@@ -46,6 +46,7 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
         btnInserirAutoria = new javax.swing.JButton();
         listarItensEmprestados = new javax.swing.JButton();
         listarItensDisponiveis = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Bibliotecário");
@@ -155,6 +156,13 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
             }
         });
 
+        btnLogout.setText("Log out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,15 +194,22 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
                 .addContainerGap(115, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(listarItensDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listarItensEmprestados, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(141, 141, 141))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(listarItensDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listarItensEmprestados, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(141, 141, 141))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnLogout)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addContainerGap()
+                .addComponent(btnLogout)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserirLivro)
                     .addComponent(btnListarLivro))
@@ -322,6 +337,12 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_listarItensDisponiveisActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -370,6 +391,7 @@ public class FrmMenuSecretario extends javax.swing.JFrame {
     private javax.swing.JButton btnListarLivro;
     private javax.swing.JButton btnListarRevista;
     private javax.swing.JButton btnListarUsuario;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton inserirEmprestimo;
     private javax.swing.JLabel lblLogadoComo;
     private javax.swing.JButton listarItensDisponiveis;

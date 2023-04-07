@@ -188,12 +188,12 @@ public class FrmAddAutoria extends javax.swing.JFrame {
 
     private void salvarAutor() {
         if (cmbAutores.getSelectedItem().toString().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo autor é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo autor Ã© obrigatÃ³rio!");
             return;
         }
 
         if (cmbItens.getSelectedItem().toString().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo item é obrigatório!");
+            JOptionPane.showMessageDialog(null, "Atenï¿½ï¿½o: o campo item Ã© obrigatÃ³rio!");
             return;
         }
 

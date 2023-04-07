@@ -296,27 +296,27 @@ public class FrmListarUsuario extends javax.swing.JFrame {
 
     private void editarUsuario() {
         if (txtNome.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo nome é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo nome Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtSobrenome.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo sobrenome é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo sobrenome Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtUsername.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo username é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo username Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtSenha.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo senha é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo senha Ã© obrigatÃ³rio!");
             return;
         }
 
         if (cmbTipoUsuario.getSelectedItem().toString().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo tipo é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo tipo Ã© obrigatÃ³rio!");
             return;
         }
 

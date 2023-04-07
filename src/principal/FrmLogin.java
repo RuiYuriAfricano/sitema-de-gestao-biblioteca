@@ -137,12 +137,12 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void logar() {
         if (txtUsername.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo username é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo username Ã© obrigatÃ³rio!");
             return;
         }
 
-        if (txtUsername.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo senha é obrigatório!");
+        if (txtSenha.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo senha Ã© obrigatÃ³rio!");
             return;
         }
 

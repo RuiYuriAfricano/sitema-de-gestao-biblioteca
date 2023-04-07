@@ -262,17 +262,17 @@ public class FrmListarLivro extends javax.swing.JFrame {
 
     private void editarLivro() {
         if (txtTitulo.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "AtenÁ„o: o campo tÌtulo È obrigatÛrio!");
+            JOptionPane.showMessageDialog(null, "Aten√ß√£o: o campo t√≠tulo √© obrigat√≥rio!");
             return;
         }
 
         if (txtData.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "AtenÁ„o: o campo data È obrigatÛrio!");
+            JOptionPane.showMessageDialog(null, "Aten√ß√£o: o campo data √© obrigat√≥rio!");
             return;
         }
 
         if (txtQtdPagina.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "AtenÁ„o: o campo quantidade de p·ginas È obrigatÛrio!");
+            JOptionPane.showMessageDialog(null, "Aten√ß√£o: o campo quantidade de p√°ginas √© obrigat√≥rio!");
             return;
         }
 

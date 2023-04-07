@@ -172,17 +172,17 @@ public class FrmAddLivro extends javax.swing.JFrame {
 
     private void salvarLivro() {
         if (txtTitulo.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo tÃ­tulo Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtData.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo data Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtQtdPagina.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo quantidade de páginas é obrigatório!");
+            JOptionPane.showMessageDialog(null, "Atenï¿½ï¿½o: o campo quantidade de pï¿½ginas Ã© obrigatÃ³rio!");
             return;
         }
 

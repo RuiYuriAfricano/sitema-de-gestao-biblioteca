@@ -20,13 +20,13 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
 
     public FrmListarItensEmprestadosMenuEstudante(String txt) {
         initComponents();
-        listarItemEmprestado();
         this.setLocationRelativeTo(null); // centraliza o JFrame
         this.setResizable(false); // torna o JFrame não redimensionável
         txtGlobal = txt;
         txtusuario.setEnabled(false);
         txtItem.setEnabled(false);
         idUser = !pegaNumInStr2(txtGlobal).equals("") ? Integer.parseInt(pegaNumInStr2(txtGlobal)) : -1;
+        listarItemEmprestado();
 
     }
 
@@ -274,7 +274,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
             model.setNumRows(0);
 
             Usuario user = new Usuario();
-            user.setIdUsuario(23);
+            user.setIdUsuario(idUser);
             ArrayList<ItemEmprestado> lista = itemEmpdao.listarItensEmprestadoPorUsuario(user);
 
             for (int num = 0; num < lista.size(); num++) {

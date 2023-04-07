@@ -176,17 +176,17 @@ public class FrmAddCd extends javax.swing.JFrame {
 
     private void salvarCd() {
         if (txtTitulo.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            JOptionPane.showMessageDialog(null, "Atenï¿½ï¿½o: o campo tÃ­tulo Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtData.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            JOptionPane.showMessageDialog(null, "Atenï¿½ï¿½o: o campo data Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtTempoRepro.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo tempo de reprodução é obrigatório!");
+            JOptionPane.showMessageDialog(null, "Atenï¿½ï¿½o: o campo tempo de reproduÃ§Ã£o Ã© obrigatÃ³rio!");
             return;
         }
 

@@ -42,8 +42,6 @@ public class FrmAddEmprestimoMenuEstudante extends javax.swing.JFrame {
         this.setResizable(false);
         txtGlobal = txt;
         cmbUsuarios.setEnabled(false);
-        txtDataDevolucao.setEnabled(false);
-        txtDataEmprestimo.setEnabled(false);
         this.carregaComboBox();
     }
 

@@ -248,12 +248,12 @@ public class FrmListarAutor extends javax.swing.JFrame {
 
     private void editarAutor() {
         if (txtNome.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo nome é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo nome Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtSobrenome.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo sobrenome é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo sobrenome Ã© obrigatÃ³rio!");
             return;
         }
 

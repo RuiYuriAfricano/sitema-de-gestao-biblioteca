@@ -178,17 +178,17 @@ public class FrmAddRevista extends javax.swing.JFrame {
 
     private void salvarRevista() {
         if (txtTitulo.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo tÃ­tulo Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtData.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: o campo data Ã© obrigatÃ³rio!");
             return;
         }
 
         if (txtNumEdicoes.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Atenção: o campo número de edições é obrigatório!");
+            JOptionPane.showMessageDialog(null, "Atenï¿½ï¿½o: o campo nÃºmero de ediÃ§Ãµes Ã© obrigatÃ³rio!");
             return;
         }
 

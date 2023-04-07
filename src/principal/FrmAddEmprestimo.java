@@ -249,7 +249,7 @@ public class FrmAddEmprestimo extends javax.swing.JFrame {
 
             if (pegaNumInStr(cmbUsuarios.getSelectedItem().toString()).equals("") || pegaNumInStr(cmbItens.getSelectedItem().toString()).equals("")) {
 
-                JOptionPane.showMessageDialog(null, "Atenção: Prencha todos os campos!");
+                JOptionPane.showMessageDialog(null, "AtenÃ§Ã£o: Prencha todos os campos!");
 
                 return;
             }
