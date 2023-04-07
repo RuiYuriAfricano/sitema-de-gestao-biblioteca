@@ -298,25 +298,14 @@ public class FrmAddEmprestimo extends javax.swing.JFrame {
                 }
             }
 
-            LivroDao livroDao = new LivroDao();
-            listaLivros = livroDao.listarLivro();
+            ItemEmprestadoDao itemEmpdao = new ItemEmprestadoDao();
 
-            for (Livro item : listaLivros) {
-                cmbItens.addItem(item.getIdItem() + ":" + item.getTitulo());
-            }
+            ArrayList<ItemEmprestado> lista = itemEmpdao.listarItemNaoEmprestado();
+            
+            
 
-            RevistaDao revistaDao = new RevistaDao();
-            listaRevistas = revistaDao.listarRevista();
-
-            for (Revista item : listaRevistas) {
-                cmbItens.addItem(item.getIdItem() + ":" + item.getTitulo());
-            }
-
-            CdDao cdDao = new CdDao();
-            listaCds = cdDao.listarCd();
-
-            for (Cd item : listaCds) {
-                cmbItens.addItem(item.getIdItem() + ":" + item.getTitulo());
+            for (ItemEmprestado itemEmp : lista) {
+                cmbItens.addItem(itemEmp.getItem().getIdItem() + ":" + itemEmp.getItem().getTitulo());
             }
 
         } catch (Exception e) {

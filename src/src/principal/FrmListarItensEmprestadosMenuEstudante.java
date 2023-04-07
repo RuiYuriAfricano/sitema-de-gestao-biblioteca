@@ -23,6 +23,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
     int idUsuarioSelecionado = -1;
     int idItemSelecionado = -1;
     String txtGlobal;
+    int idUser;
 
     public FrmListarItensEmprestadosMenuEstudante(String txt) {
         initComponents();
@@ -32,6 +33,9 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
         txtGlobal = txt;
         txtusuario.setEnabled(false);
         txtItem.setEnabled(false);
+        idUser = !pegaNumInStr2(txtGlobal).equals("")? Integer.parseInt(pegaNumInStr2(txtGlobal)): -1;
+        
+        
     }
 
     /**
@@ -44,7 +48,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaItensEmprestados = new javax.swing.JTable();
+        tabelaItensEmprestadosMenuEstudante = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
@@ -56,7 +60,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Listar itens emprestados");
 
-        tabelaItensEmprestados.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaItensEmprestadosMenuEstudante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,14 +74,14 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
                 "IdItem", "Titulo", "IdUsuário", "Nome usuário", "Sobrenome usuário", "Data de empréstimo", "Data de devolução"
             }
         ));
-        tabelaItensEmprestados.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaItensEmprestadosMenuEstudante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaItensEmprestadosMouseClicked(evt);
+                tabelaItensEmprestadosMenuEstudanteMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaItensEmprestados);
+        jScrollPane1.setViewportView(tabelaItensEmprestadosMenuEstudante);
 
-        jLabel1.setText("Itens que se encontram emprestados");
+        jLabel1.setText("Itens que se encontram emprestados por mim");
 
         btnExcluir.setText("Devolver");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -114,8 +118,8 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(txtItem, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,9 +153,9 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
         this.listarItemEmprestado();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void tabelaItensEmprestadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaItensEmprestadosMouseClicked
+    private void tabelaItensEmprestadosMenuEstudanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaItensEmprestadosMenuEstudanteMouseClicked
         carregarCampos();
-    }//GEN-LAST:event_tabelaItensEmprestadosMouseClicked
+    }//GEN-LAST:event_tabelaItensEmprestadosMenuEstudanteMouseClicked
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         FrmMenuEstudante frmSec = new FrmMenuEstudante(txtGlobal);
@@ -264,19 +268,23 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelaItensEmprestados;
+    private javax.swing.JTable tabelaItensEmprestadosMenuEstudante;
     private javax.swing.JTextField txtItem;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 
     private void listarItemEmprestado() {
+        
         try {
             ItemEmprestadoDao itemEmpdao = new ItemEmprestadoDao();
 
-            DefaultTableModel model = (DefaultTableModel) tabelaItensEmprestados.getModel();
+            DefaultTableModel model = (DefaultTableModel) tabelaItensEmprestadosMenuEstudante.getModel();
             model.setNumRows(0);
-
-            ArrayList<ItemEmprestado> lista = itemEmpdao.listarTodosItemEmprestado();
+            
+            
+            Usuario user = new Usuario();
+            user.setIdUsuario(23);
+            ArrayList<ItemEmprestado> lista = itemEmpdao.listarItensEmprestadoPorUsuario(user);
 
             for (int num = 0; num < lista.size(); num++) {
                 model.addRow(new Object[]{
@@ -296,13 +304,13 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
     }
 
     private void carregarCampos() {
-        int setar = tabelaItensEmprestados.getSelectedRow();
+        int setar = tabelaItensEmprestadosMenuEstudante.getSelectedRow();
 
-        idItemSelecionado = Integer.parseInt((tabelaItensEmprestados.getModel().getValueAt(setar, 0)).toString());
-        txtItem.setText((tabelaItensEmprestados.getModel().getValueAt(setar, 1)).toString());
-        idUsuarioSelecionado = Integer.parseInt((tabelaItensEmprestados.getModel().getValueAt(setar, 2)).toString());
+        idItemSelecionado = Integer.parseInt((tabelaItensEmprestadosMenuEstudante.getModel().getValueAt(setar, 0)).toString());
+        txtItem.setText((tabelaItensEmprestadosMenuEstudante.getModel().getValueAt(setar, 1)).toString());
+        idUsuarioSelecionado = Integer.parseInt((tabelaItensEmprestadosMenuEstudante.getModel().getValueAt(setar, 2)).toString());
 
-        txtusuario.setText((tabelaItensEmprestados.getModel().getValueAt(setar, 3)).toString() + " " + (tabelaItensEmprestados.getModel().getValueAt(setar, 4)).toString());
+        txtusuario.setText((tabelaItensEmprestadosMenuEstudante.getModel().getValueAt(setar, 3)).toString() + " " + (tabelaItensEmprestadosMenuEstudante.getModel().getValueAt(setar, 4)).toString());
 
     }
 
@@ -328,5 +336,14 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
     private void limpaCampos() {
         txtusuario.setText("");
         txtItem.setText("");
+    }
+    private String pegaNumInStr2(String str) {
+        String res = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                res += Character.toString(str.charAt(i));
+            }
+        }
+        return res;
     }
 }

@@ -41,6 +41,9 @@ public class FrmAddEmprestimoMenuEstudante extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); // centraliza o JFrame
         this.setResizable(false);
         txtGlobal = txt;
+        cmbUsuarios.setEnabled(false);
+        txtDataDevolucao.setEnabled(false);
+        txtDataEmprestimo.setEnabled(false);
         this.carregaComboBox();
     }
 
@@ -323,33 +326,23 @@ public class FrmAddEmprestimoMenuEstudante extends javax.swing.JFrame {
 
             UsuarioDAO usuarioDao = new UsuarioDAO();
             listaUsuarios = usuarioDao.listarUsuario();
-
+            int idUser = !pegaNumInStr2(txtGlobal).equals("")? Integer.parseInt(pegaNumInStr2(txtGlobal)): -1;
             for (Usuario usuario : listaUsuarios) {
-                if (usuario.getTipo() != EnumUsuario.TipoUsuario.bibliotecario) {
+                if (usuario.getTipo() != EnumUsuario.TipoUsuario.bibliotecario && usuario.getIdUsuario()==idUser ) {
                     cmbUsuarios.addItem(usuario.getIdUsuario() + ":" + usuario.getNome() + " " + usuario.getSobrenome());
                 }
             }
+            
+            ItemEmprestadoDao itemEmpdao = new ItemEmprestadoDao();
 
-            LivroDao livroDao = new LivroDao();
-            listaLivros = livroDao.listarLivro();
+            ArrayList<ItemEmprestado> lista = itemEmpdao.listarItemNaoEmprestado();
+            
+            
 
-            for (Livro item : listaLivros) {
-                cmbItens.addItem(item.getIdItem() + ":" + item.getTitulo());
+            for (ItemEmprestado itemEmp : lista) {
+                cmbItens.addItem(itemEmp.getItem().getIdItem() + ":" + itemEmp.getItem().getTitulo());
             }
-
-            RevistaDao revistaDao = new RevistaDao();
-            listaRevistas = revistaDao.listarRevista();
-
-            for (Revista item : listaRevistas) {
-                cmbItens.addItem(item.getIdItem() + ":" + item.getTitulo());
-            }
-
-            CdDao cdDao = new CdDao();
-            listaCds = cdDao.listarCd();
-
-            for (Cd item : listaCds) {
-                cmbItens.addItem(item.getIdItem() + ":" + item.getTitulo());
-            }
+    
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro no fcarregar comboBox em FrmAddEmpréstimo " + e);
@@ -360,6 +353,16 @@ public class FrmAddEmprestimoMenuEstudante extends javax.swing.JFrame {
         String res = "";
         if (Character.isDigit(str.charAt(0))) {
             for (int i = 0; i < str.length() && Character.isDigit(str.charAt(i)); i++) {
+                res += Character.toString(str.charAt(i));
+            }
+        }
+        return res;
+    }
+
+    private String pegaNumInStr2(String str) {
+        String res = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
                 res += Character.toString(str.charAt(i));
             }
         }

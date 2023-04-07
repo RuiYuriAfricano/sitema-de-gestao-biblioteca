@@ -108,7 +108,7 @@ public class ItemEmprestadoDao {
     //Listar todos itemEMprestado da bd
     public ArrayList<ItemEmprestado> listarItemNaoEmprestado(){
         
-        String sql = "select id_item, titulo_item, data_publicacao  from tbitem, tb_item_emprestado where fk_item != id_item";
+        String sql = "select id_item, titulo_item, data_publicacao  from tbitem WHERE id_item NOT IN (SELECT fk_item FROM tb_item_emprestado)";
         conn = new Conexao().conectaBD();
         try {
             pstm = conn.prepareStatement(sql);

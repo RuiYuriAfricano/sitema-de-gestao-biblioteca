@@ -40,8 +40,8 @@
                           <Component id="txtItem" min="-2" pref="139" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="606" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="282" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -81,7 +81,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tabelaItensEmprestados">
+        <Component class="javax.swing.JTable" name="tabelaItensEmprestadosMenuEstudante">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;IdItem&quot;, &quot;Titulo&quot;, &quot;IdUsu&#xe1;rio&quot;, &quot;Nome usu&#xe1;rio&quot;, &quot;Sobrenome usu&#xe1;rio&quot;, &quot;Data de empr&#xe9;stimo&quot;, &quot;Data de devolu&#xe7;&#xe3;o&quot;&#xa;    }&#xa;)" type="code"/>
@@ -115,14 +115,14 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaItensEmprestadosMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaItensEmprestadosMenuEstudanteMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Itens que se encontram emprestados"/>
+        <Property name="text" type="java.lang.String" value="Itens que se encontram emprestados por mim"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcluir">
