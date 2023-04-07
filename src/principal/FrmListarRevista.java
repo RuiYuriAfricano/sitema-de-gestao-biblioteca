@@ -1,13 +1,10 @@
 package principal;
 
-import dados.LivroDao;
 import dados.RevistaDao;
-import entidades.Livro;
 import entidades.Revista;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 public class FrmListarRevista extends javax.swing.JFrame {
 
@@ -16,6 +13,7 @@ public class FrmListarRevista extends javax.swing.JFrame {
      */
     int idRevistaSelecionada = -1;
     String txtGlobal;
+
     public FrmListarRevista(String txt) {
         initComponents();
         listarRevista();
@@ -161,7 +159,6 @@ public class FrmListarRevista extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editarRevista();
-        this.limpaCampos();
         this.listarRevista();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -188,7 +185,7 @@ public class FrmListarRevista extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -234,31 +231,31 @@ public class FrmListarRevista extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 
-    private void listarRevista(){
+    private void listarRevista() {
         try {
             RevistaDao revistadao = new RevistaDao();
-            
+
             DefaultTableModel model = (DefaultTableModel) tabelaRevista.getModel();
             model.setNumRows(0);
-            
+
             ArrayList<Revista> lista = revistadao.listarRevista();
-            
-            for(int num = 0; num < lista.size(); num++){
+
+            for (int num = 0; num < lista.size(); num++) {
                 model.addRow(new Object[]{
-                lista.get(num).getIdItem(),
-                lista.get(num).getTitulo(),
-                lista.get(num).getData(),
-                lista.get(num).getNumeroDeEdicoes()
-            });
+                    lista.get(num).getIdItem(),
+                    lista.get(num).getTitulo(),
+                    lista.get(num).getData(),
+                    lista.get(num).getNumeroDeEdicoes()
+                });
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu algum erro ao listar revista"+e);
+            JOptionPane.showMessageDialog(null, "Ocorreu algum erro ao listar revista" + e);
         }
     }
-    
-    private void carregarCampos(){
+
+    private void carregarCampos() {
         int setar = tabelaRevista.getSelectedRow();
-        
+
         idRevistaSelecionada = Integer.parseInt((tabelaRevista.getModel().getValueAt(setar, 0)).toString());
         txtTitulo.setText((tabelaRevista.getModel().getValueAt(setar, 1)).toString());
         txtData.setText((tabelaRevista.getModel().getValueAt(setar, 2)).toString());
@@ -266,23 +263,39 @@ public class FrmListarRevista extends javax.swing.JFrame {
     }
 
     private void editarRevista() {
+        if (txtTitulo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            return;
+        }
+
+        if (txtData.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            return;
+        }
+
+        if (txtNumEdicoes.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo número de edições é obrigatório!");
+            return;
+        }
+
         try {
             String titulo, data;
             int qtdEdicoes;
             titulo = txtTitulo.getText();
             data = txtData.getText();
             qtdEdicoes = Integer.parseInt(txtNumEdicoes.getText());
-            
+
             Revista revista = new Revista(titulo, data, qtdEdicoes);
             revista.setIdItem(idRevistaSelecionada);
-            
+
             RevistaDao revistaDao = new RevistaDao();
             revistaDao.alterarRevista(revista);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Revista editada com sucesso");
-            
+
+            this.limpaCampos();
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no editar frmListarRevista: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no editar frmListarRevista: " + erro);
         }
     }
 
@@ -293,21 +306,21 @@ public class FrmListarRevista extends javax.swing.JFrame {
             titulo = txtTitulo.getText();
             data = txtData.getText();
             qtdEdicoes = Integer.parseInt(txtNumEdicoes.getText());
-            
+
             Revista revista = new Revista(titulo, data, qtdEdicoes);
             revista.setIdItem(idRevistaSelecionada);
-            
+
             RevistaDao revistaDao = new RevistaDao();
             revistaDao.excluirRevista(revista);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Revista excluÃ­da com sucesso");
-            
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no excluir frmListarRevista: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no excluir frmListarRevista: " + erro);
         }
     }
-    
-    private void limpaCampos(){
+
+    private void limpaCampos() {
         txtTitulo.setText("");
         txtData.setText("");
         txtNumEdicoes.setText("");

@@ -1,13 +1,10 @@
 package principal;
 
 import dados.CdDao;
-import dados.LivroDao;
 import entidades.Cd;
-import entidades.Livro;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 public class FrmListarCd extends javax.swing.JFrame {
 
@@ -16,6 +13,7 @@ public class FrmListarCd extends javax.swing.JFrame {
      */
     int idCdSelecioando = -1;
     String txtGlobal;
+
     public FrmListarCd(String txt) {
         initComponents();
         listarCd();
@@ -161,7 +159,6 @@ public class FrmListarCd extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editarCd();
-        this.limpaCampos();
         this.listarCd();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -188,7 +185,7 @@ public class FrmListarCd extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -234,31 +231,31 @@ public class FrmListarCd extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 
-    private void listarCd(){
+    private void listarCd() {
         try {
             CdDao cddao = new CdDao();
-            
+
             DefaultTableModel model = (DefaultTableModel) tabelaCd.getModel();
             model.setNumRows(0);
-            
+
             ArrayList<Cd> lista = cddao.listarCd();
-            
-            for(int num = 0; num < lista.size(); num++){
+
+            for (int num = 0; num < lista.size(); num++) {
                 model.addRow(new Object[]{
-                lista.get(num).getIdItem(),
-                lista.get(num).getTitulo(),
-                lista.get(num).getData(),
-                lista.get(num).getTempoDeReproducao()
-            });
+                    lista.get(num).getIdItem(),
+                    lista.get(num).getTitulo(),
+                    lista.get(num).getData(),
+                    lista.get(num).getTempoDeReproducao()
+                });
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu algum erro ao listar cd"+e);
+            JOptionPane.showMessageDialog(null, "Ocorreu algum erro ao listar cd" + e);
         }
     }
-    
-    private void carregarCampos(){
+
+    private void carregarCampos() {
         int setar = tabelaCd.getSelectedRow();
-        
+
         idCdSelecioando = Integer.parseInt((tabelaCd.getModel().getValueAt(setar, 0)).toString());
         txtTitulo.setText((tabelaCd.getModel().getValueAt(setar, 1)).toString());
         txtData.setText((tabelaCd.getModel().getValueAt(setar, 2)).toString());
@@ -266,23 +263,39 @@ public class FrmListarCd extends javax.swing.JFrame {
     }
 
     private void editarCd() {
+        if (txtTitulo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            return;
+        }
+
+        if (txtData.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            return;
+        }
+
+        if (txtTempoRepro.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo tempo de reprodução é obrigatório!");
+            return;
+        }
+
         try {
             String titulo, data;
             int tempo;
             titulo = txtTitulo.getText();
             data = txtData.getText();
             tempo = Integer.parseInt(txtTempoRepro.getText());
-            
+
             Cd cd = new Cd(titulo, data, tempo);
             cd.setIdItem(idCdSelecioando);
-            
+
             CdDao cdDao = new CdDao();
             cdDao.alterarCd(cd);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Cd editado com sucesso");
-            
+
+            this.limpaCampos();
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no editar frmListarCd: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no editar frmListarCd: " + erro);
         }
     }
 
@@ -293,21 +306,21 @@ public class FrmListarCd extends javax.swing.JFrame {
             titulo = txtTitulo.getText();
             data = txtData.getText();
             tempo = Integer.parseInt(txtTempoRepro.getText());
-            
+
             Cd cd = new Cd(titulo, data, tempo);
             cd.setIdItem(idCdSelecioando);
-            
+
             CdDao cdDao = new CdDao();
             cdDao.excluirCd(cd);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Cd excluÃ­do com sucesso");
-            
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no excluir frmListarCd: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no excluir frmListarCd: " + erro);
         }
     }
-    
-    private void limpaCampos(){
+
+    private void limpaCampos() {
         txtTitulo.setText("");
         txtData.setText("");
         txtTempoRepro.setText("");

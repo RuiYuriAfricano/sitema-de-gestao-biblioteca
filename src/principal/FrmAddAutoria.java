@@ -10,16 +10,11 @@ import dados.CdDao;
 import dados.ItemAutorDao;
 import dados.LivroDao;
 import dados.RevistaDao;
-import dados.UsuarioDAO;
 import entidades.Autor;
 import entidades.Cd;
-import entidades.Item;
 import entidades.ItemAutor;
 import entidades.Livro;
 import entidades.Revista;
-import entidades.Usuario;
-import enums.EnumUsuario;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -139,7 +134,7 @@ public class FrmAddAutoria extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -192,6 +187,16 @@ public class FrmAddAutoria extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void salvarAutor() {
+        if (cmbAutores.getSelectedItem().toString().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo autor é obrigatório!");
+            return;
+        }
+
+        if (cmbItens.getSelectedItem().toString().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo item é obrigatório!");
+            return;
+        }
+
         try {
             int idAutor, idItem;
 

@@ -1,12 +1,7 @@
 package principal;
 
 import dados.AutorDAO;
-import dados.LivroDao;
-import dados.UsuarioDAO;
 import entidades.Autor;
-import entidades.Livro;
-import entidades.Usuario;
-import enums.EnumUsuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -148,7 +143,6 @@ public class FrmListarAutor extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editarAutor();
-        this.limpaCampos();
         this.listarAutor();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -175,7 +169,7 @@ public class FrmListarAutor extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -253,13 +247,22 @@ public class FrmListarAutor extends javax.swing.JFrame {
     }
 
     private void editarAutor() {
+        if (txtNome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo nome é obrigatório!");
+            return;
+        }
+
+        if (txtSobrenome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo sobrenome é obrigatório!");
+            return;
+        }
+
         try {
             String nome, sobrenome;
 
             nome = txtNome.getText();
             sobrenome = txtSobrenome.getText();
             Autor autor = new Autor(nome, sobrenome);
-           
 
             autor.setIdAutor(idAutorSelecionado);
 
@@ -267,7 +270,7 @@ public class FrmListarAutor extends javax.swing.JFrame {
             autorDao.alterarAutor(autor);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Autor editado com sucesso");
-
+            this.limpaCampos();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro no editar frmListarautor: " + erro);
         }
@@ -280,7 +283,6 @@ public class FrmListarAutor extends javax.swing.JFrame {
             nome = txtNome.getText();
             sobrenome = txtSobrenome.getText();
             Autor autor = new Autor(nome, sobrenome);
-           
 
             autor.setIdAutor(idAutorSelecionado);
 

@@ -5,23 +5,14 @@
  */
 package principal;
 
-import dados.AutorDAO;
-import dados.CdDao;
-import dados.ItemAutorDao;
 import dados.ItemEmprestadoDao;
-import dados.LivroDao;
-import dados.RevistaDao;
 import dados.UsuarioDAO;
-import entidades.Autor;
 import entidades.Cd;
-import entidades.Item;
-import entidades.ItemAutor;
 import entidades.ItemEmprestado;
 import entidades.Livro;
 import entidades.Revista;
 import entidades.Usuario;
 import enums.EnumUsuario;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -180,7 +171,7 @@ public class FrmAddEmprestimo extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -257,6 +248,9 @@ public class FrmAddEmprestimo extends javax.swing.JFrame {
             int idUsuario, idItem;
 
             if (pegaNumInStr(cmbUsuarios.getSelectedItem().toString()).equals("") || pegaNumInStr(cmbItens.getSelectedItem().toString()).equals("")) {
+
+                JOptionPane.showMessageDialog(null, "Atenção: Prencha todos os campos!");
+
                 return;
             }
 
@@ -301,8 +295,6 @@ public class FrmAddEmprestimo extends javax.swing.JFrame {
             ItemEmprestadoDao itemEmpdao = new ItemEmprestadoDao();
 
             ArrayList<ItemEmprestado> lista = itemEmpdao.listarItemNaoEmprestado();
-            
-            
 
             for (ItemEmprestado itemEmp : lista) {
                 cmbItens.addItem(itemEmp.getItem().getIdItem() + ":" + itemEmp.getItem().getTitulo());

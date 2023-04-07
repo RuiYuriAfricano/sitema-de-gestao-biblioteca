@@ -1,8 +1,6 @@
 package principal;
 
-import dados.LivroDao;
 import dados.UsuarioDAO;
-import entidades.Livro;
 import entidades.Usuario;
 import enums.EnumUsuario;
 import java.util.ArrayList;
@@ -185,7 +183,6 @@ public class FrmListarUsuario extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editarUsuario();
-        this.limpaCampos();
         this.listarUsuario();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -212,7 +209,7 @@ public class FrmListarUsuario extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -298,6 +295,31 @@ public class FrmListarUsuario extends javax.swing.JFrame {
     }
 
     private void editarUsuario() {
+        if (txtNome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo nome é obrigatório!");
+            return;
+        }
+
+        if (txtSobrenome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo sobrenome é obrigatório!");
+            return;
+        }
+
+        if (txtUsername.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo username é obrigatório!");
+            return;
+        }
+
+        if (txtSenha.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo senha é obrigatório!");
+            return;
+        }
+
+        if (cmbTipoUsuario.getSelectedItem().toString().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo tipo é obrigatório!");
+            return;
+        }
+
         try {
             String nome, sobrenome, username, senha, tipo;
 
@@ -320,6 +342,7 @@ public class FrmListarUsuario extends javax.swing.JFrame {
             //Mensagem
             JOptionPane.showMessageDialog(null, "UsuÃ¡rio editado com sucesso");
 
+            this.limpaCampos();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro no editar frmListarusuÃ¡rio: " + erro);
         }

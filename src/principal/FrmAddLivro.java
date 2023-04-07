@@ -7,7 +7,6 @@ package principal;
 
 import dados.LivroDao;
 import entidades.Livro;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +19,7 @@ public class FrmAddLivro extends javax.swing.JFrame {
      * Creates new form AddLivro
      */
     String txtGlobal = "";
+
     public FrmAddLivro(String txt) {
         initComponents();
         this.setLocationRelativeTo(null); // centraliza o JFrame
@@ -114,7 +114,7 @@ public class FrmAddLivro extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         this.salvarLivro();
-        this.limpaCampos();
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -130,7 +130,7 @@ public class FrmAddLivro extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -171,28 +171,44 @@ public class FrmAddLivro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void salvarLivro() {
+        if (txtTitulo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            return;
+        }
+
+        if (txtData.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            return;
+        }
+
+        if (txtQtdPagina.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo quantidade de páginas é obrigatório!");
+            return;
+        }
+
         try {
             String titulo, data;
             int qtdPaginas;
             titulo = txtTitulo.getText();
             data = txtData.getText();
             qtdPaginas = Integer.parseInt(txtQtdPagina.getText());
-            
+
             Livro livro = new Livro(titulo, data, qtdPaginas);
-            
+
             LivroDao livroDao = new LivroDao();
             livroDao.inserirLivro(livro);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Livro inserido com sucesso");
-            
+            this.limpaCampos();
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no frmAddlivro: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no frmAddlivro: " + erro);
         }
     }
-    private void limpaCampos(){
+
+    private void limpaCampos() {
         txtTitulo.setText("");
         txtData.setText("");
         txtQtdPagina.setText("");
     }
-    
+
 }

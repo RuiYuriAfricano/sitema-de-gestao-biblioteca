@@ -1,9 +1,7 @@
 package principal;
 
 import dados.CdDao;
-import dados.LivroDao;
 import entidades.Cd;
-import entidades.Livro;
 import javax.swing.JOptionPane;
 
 public class FrmAddCd extends javax.swing.JFrame {
@@ -107,7 +105,6 @@ public class FrmAddCd extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         this.salvarCd();
-        this.limpaCampos();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -123,7 +120,7 @@ public class FrmAddCd extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -178,6 +175,21 @@ public class FrmAddCd extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void salvarCd() {
+        if (txtTitulo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            return;
+        }
+
+        if (txtData.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            return;
+        }
+
+        if (txtTempoRepro.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo tempo de reprodução é obrigatório!");
+            return;
+        }
+
         try {
             String titulo, data;
             int tempoRepro;
@@ -192,6 +204,7 @@ public class FrmAddCd extends javax.swing.JFrame {
             //Mensagem
             JOptionPane.showMessageDialog(null, "Cd inserido com sucesso");
 
+            this.limpaCampos();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro no frmAddCd: " + erro);
         }

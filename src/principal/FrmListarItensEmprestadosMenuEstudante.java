@@ -1,16 +1,9 @@
 package principal;
 
-import dados.AutorDAO;
-import dados.ItemAutorDao;
 import dados.ItemEmprestadoDao;
-import dados.LivroDao;
-import dados.UsuarioDAO;
-import entidades.Autor;
-import entidades.ItemAutor;
 import entidades.ItemEmprestado;
 import entidades.Livro;
 import entidades.Usuario;
-import enums.EnumUsuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,9 +26,8 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
         txtGlobal = txt;
         txtusuario.setEnabled(false);
         txtItem.setEnabled(false);
-        idUser = !pegaNumInStr2(txtGlobal).equals("")? Integer.parseInt(pegaNumInStr2(txtGlobal)): -1;
-        
-        
+        idUser = !pegaNumInStr2(txtGlobal).equals("") ? Integer.parseInt(pegaNumInStr2(txtGlobal)) : -1;
+
     }
 
     /**
@@ -149,7 +141,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         this.excluirItemEmprestado();
-        this.limpaCampos();
+
         this.listarItemEmprestado();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -170,7 +162,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -274,14 +266,13 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void listarItemEmprestado() {
-        
+
         try {
             ItemEmprestadoDao itemEmpdao = new ItemEmprestadoDao();
 
             DefaultTableModel model = (DefaultTableModel) tabelaItensEmprestadosMenuEstudante.getModel();
             model.setNumRows(0);
-            
-            
+
             Usuario user = new Usuario();
             user.setIdUsuario(23);
             ArrayList<ItemEmprestado> lista = itemEmpdao.listarItensEmprestadoPorUsuario(user);
@@ -295,7 +286,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
                     lista.get(num).getUsuario().getSobrenome(),
                     lista.get(num).getDataEmprestimo(),
                     lista.get(num).getDataDevolucao()
-                    
+
                 });
             }
         } catch (Exception e) {
@@ -327,7 +318,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
             itemEmpdao.devolverItem(itemEmp);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Empréstimo excluído com sucesso");
-
+            this.limpaCampos();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro no excluir frmListarItensEmprestado: " + erro);
         }
@@ -337,6 +328,7 @@ public class FrmListarItensEmprestadosMenuEstudante extends javax.swing.JFrame {
         txtusuario.setText("");
         txtItem.setText("");
     }
+
     private String pegaNumInStr2(String str) {
         String res = "";
         for (int i = 0; i < str.length(); i++) {

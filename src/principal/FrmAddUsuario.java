@@ -5,12 +5,9 @@
  */
 package principal;
 
-import dados.LivroDao;
 import dados.UsuarioDAO;
-import entidades.Livro;
 import entidades.Usuario;
 import enums.EnumUsuario;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,7 +137,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         this.salvarUsuario();
-        this.limpaCampos();
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -156,7 +153,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -203,6 +200,31 @@ public class FrmAddUsuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void salvarUsuario() {
+        if (txtNome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo nome é obrigatório!");
+            return;
+        }
+
+        if (txtSobrenome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo sobrenome é obrigatório!");
+            return;
+        }
+
+        if (txtUsername.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo username é obrigatório!");
+            return;
+        }
+
+        if (txtSenha.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo senha é obrigatório!");
+            return;
+        }
+
+        if (cmbTipoUsuario.getSelectedItem().toString().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo tipo é obrigatório!");
+            return;
+        }
+
         try {
             String nome, sobrenome, username, senha, tipo;
 

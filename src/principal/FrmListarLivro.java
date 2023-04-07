@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class FrmListarLivro extends javax.swing.JFrame {
 
     /**
@@ -14,6 +13,7 @@ public class FrmListarLivro extends javax.swing.JFrame {
      */
     int idLivroSelecioando = -1;
     String txtGlobal;
+
     public FrmListarLivro(String txt) {
         initComponents();
         listarLivro();
@@ -159,7 +159,6 @@ public class FrmListarLivro extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.editarLivro();
-        this.limpaCampos();
         this.listarLivro();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -186,7 +185,7 @@ public class FrmListarLivro extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -230,31 +229,31 @@ public class FrmListarLivro extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 
-    private void listarLivro(){
+    private void listarLivro() {
         try {
             LivroDao livrodao = new LivroDao();
-            
+
             DefaultTableModel model = (DefaultTableModel) tabelaLivro.getModel();
             model.setNumRows(0);
-            
+
             ArrayList<Livro> lista = livrodao.listarLivro();
-            
-            for(int num = 0; num < lista.size(); num++){
+
+            for (int num = 0; num < lista.size(); num++) {
                 model.addRow(new Object[]{
-                lista.get(num).getIdItem(),
-                lista.get(num).getTitulo(),
-                lista.get(num).getData(),
-                lista.get(num).getNumeroDePaginas()
-            });
+                    lista.get(num).getIdItem(),
+                    lista.get(num).getTitulo(),
+                    lista.get(num).getData(),
+                    lista.get(num).getNumeroDePaginas()
+                });
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu algum erro ao listar livro"+e);
+            JOptionPane.showMessageDialog(null, "Ocorreu algum erro ao listar livro" + e);
         }
     }
-    
-    private void carregarCampos(){
+
+    private void carregarCampos() {
         int setar = tabelaLivro.getSelectedRow();
-        
+
         idLivroSelecioando = Integer.parseInt((tabelaLivro.getModel().getValueAt(setar, 0)).toString());
         txtTitulo.setText((tabelaLivro.getModel().getValueAt(setar, 1)).toString());
         txtData.setText((tabelaLivro.getModel().getValueAt(setar, 2)).toString());
@@ -262,23 +261,39 @@ public class FrmListarLivro extends javax.swing.JFrame {
     }
 
     private void editarLivro() {
+        if (txtTitulo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            return;
+        }
+
+        if (txtData.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            return;
+        }
+
+        if (txtQtdPagina.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo quantidade de páginas é obrigatório!");
+            return;
+        }
+
         try {
             String titulo, data;
             int qtdPaginas;
             titulo = txtTitulo.getText();
             data = txtData.getText();
             qtdPaginas = Integer.parseInt(txtQtdPagina.getText());
-            
+
             Livro livro = new Livro(titulo, data, qtdPaginas);
             livro.setIdItem(idLivroSelecioando);
-            
+
             LivroDao livroDao = new LivroDao();
             livroDao.alterarLivro(livro);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Livro editado com sucesso");
-            
+
+            this.limpaCampos();
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no editar frmListarlivro: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no editar frmListarlivro: " + erro);
         }
     }
 
@@ -289,21 +304,21 @@ public class FrmListarLivro extends javax.swing.JFrame {
             titulo = txtTitulo.getText();
             data = txtData.getText();
             qtdPaginas = Integer.parseInt(txtQtdPagina.getText());
-            
+
             Livro livro = new Livro(titulo, data, qtdPaginas);
             livro.setIdItem(idLivroSelecioando);
-            
+
             LivroDao livroDao = new LivroDao();
             livroDao.excluirLivro(livro);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Livro excluÃ­do com sucesso");
-            
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no excluir frmListarlivro: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no excluir frmListarlivro: " + erro);
         }
     }
-    
-    private void limpaCampos(){
+
+    private void limpaCampos() {
         txtTitulo.setText("");
         txtData.setText("");
         txtQtdPagina.setText("");

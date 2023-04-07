@@ -5,9 +5,7 @@
  */
 package principal;
 
-import dados.LivroDao;
 import dados.RevistaDao;
-import entidades.Livro;
 import entidades.Revista;
 import javax.swing.JOptionPane;
 
@@ -21,6 +19,7 @@ public class FrmAddRevista extends javax.swing.JFrame {
      * Creates new form AddLivro
      */
     String txtGlobal;
+
     public FrmAddRevista(String txt) {
         initComponents();
         this.setLocationRelativeTo(null); // centraliza o JFrame
@@ -115,7 +114,7 @@ public class FrmAddRevista extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         this.salvarRevista();
-        this.limpaCampos();
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -131,7 +130,7 @@ public class FrmAddRevista extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -178,28 +177,44 @@ public class FrmAddRevista extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void salvarRevista() {
+        if (txtTitulo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo título é obrigatório!");
+            return;
+        }
+
+        if (txtData.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo data é obrigatório!");
+            return;
+        }
+
+        if (txtNumEdicoes.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Atenção: o campo número de edições é obrigatório!");
+            return;
+        }
+
         try {
             String titulo, data;
             int numEdicoes;
             titulo = txtTitulo.getText();
             data = txtData.getText();
             numEdicoes = Integer.parseInt(txtNumEdicoes.getText());
-            
+
             Revista revista = new Revista(titulo, data, numEdicoes);
-            
+
             RevistaDao revistaDao = new RevistaDao();
             revistaDao.inserirRevista(revista);
             //Mensagem
             JOptionPane.showMessageDialog(null, "Revista inserida com sucesso");
-            
+            this.limpaCampos();
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro no frmAddrevista: "+erro);
+            JOptionPane.showMessageDialog(null, "Erro no frmAddrevista: " + erro);
         }
     }
-    private void limpaCampos(){
+
+    private void limpaCampos() {
         txtTitulo.setText("");
         txtData.setText("");
         txtNumEdicoes.setText("");
     }
-    
+
 }

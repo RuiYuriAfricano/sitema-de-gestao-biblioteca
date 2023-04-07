@@ -7,7 +7,6 @@ package principal;
 
 import dados.UsuarioDAO;
 import entidades.Usuario;
-import enums.EnumUsuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -100,7 +99,7 @@ public class FrmLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -136,7 +135,17 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-private void logar() {
+    private void logar() {
+        if (txtUsername.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "AtenÁ„o: o campo username È obrigatÛrio!");
+            return;
+        }
+
+        if (txtUsername.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "AtenÁ„o: o campo senha È obrigatÛrio!");
+            return;
+        }
+
         try {
             String username, senha;
             username = txtUsername.getText();
@@ -145,17 +154,17 @@ private void logar() {
             Usuario user = new Usuario();
             user.setUsername(username);
             user.setSenha(senha);
-            
+
             UsuarioDAO userDAO = new UsuarioDAO();
             ResultSet rs = userDAO.autenticacaoUsuario(user);
-            
+
             if (rs.next()) {
                 if (rs.getString("tipo_usuario").equalsIgnoreCase("estudante")) {
-                    FrmMenuEstudante est = new FrmMenuEstudante("Usu√°rio: "+rs.getString("nome_usuario")+" "+rs.getString("sobrenome_usuario")+" "+rs.getString("id_usuario"));
+                    FrmMenuEstudante est = new FrmMenuEstudante("Usu√°rio: " + rs.getString("nome_usuario") + " " + rs.getString("sobrenome_usuario") + " " + rs.getString("id_usuario"));
                     est.setVisible(true);
                     dispose();
                 } else {
-                    FrmMenuSecretario sec = new FrmMenuSecretario("Usu√°rio: "+rs.getString("nome_usuario")+" "+rs.getString("sobrenome_usuario")+" "+rs.getString("id_usuario"));
+                    FrmMenuSecretario sec = new FrmMenuSecretario("Usu√°rio: " + rs.getString("nome_usuario") + " " + rs.getString("sobrenome_usuario") + " " + rs.getString("id_usuario"));
                     sec.setVisible(true);
                     dispose();
                 }
@@ -163,9 +172,9 @@ private void logar() {
                 //enviar msg dizendo incorreto
                 JOptionPane.showMessageDialog(null, "Usu√°rio ou senha inv√°lida");
             }
-            
+
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "frmLoginView: "+erro);
+            JOptionPane.showMessageDialog(null, "frmLoginView: " + erro);
         }
     }
 }
